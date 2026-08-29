@@ -1,49 +1,40 @@
 # Deploy this folder as GitHub Pages
-# Repo name MUST be: JiangYunhang.github.io
-# Then open: https://JiangYunhang.github.io/
-
-# 1) Login once (browser):
-#    gh auth login
-
-# 2) From this directory, run:
-#    powershell -ExecutionPolicy Bypass -File .\deploy.ps1
+# Repo: JiangYunhang.github.io  →  https://JiangYunhang.github.io/
+#
+#   powershell -ExecutionPolicy Bypass -File .\deploy.ps1
 
 $ErrorActionPreference = "Stop"
 $repo = "JiangYunhang.github.io"
+$owner = "JiangYunhang"
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $root
 
-if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
-  Write-Error "Please install GitHub CLI: https://cli.github.com/"
+$files = @(
+  ".gitignore", ".nojekyll", "index.html", "README.md", "deploy.ps1",
+  "css/style.css", "js/main.js", "js/site-data.js",
+  "assets/img/avatar.svg", "assets/img/album-placeholder.svg",
+  "assets/img/.gitkeep", "assets/music/.gitkeep"
+)
+foreach ($f in $files) {
+  if (Test-Path $f) { git add -- $f }
 }
 
-gh auth status
-
-if (-not (Test-Path ".git")) {
-  git init
-  git branch -M main
-}
-
-git add -A
 $status = git status --porcelain
 if ($status) {
-  git commit -m "Publish personal homepage for JiangYunhang"
+  $env:GIT_AUTHOR_NAME = "Jiang Yunhang"
+  $env:GIT_AUTHOR_EMAIL = "2069329624@qq.com"
+  $env:GIT_COMMITTER_NAME = "Jiang Yunhang"
+  $env:GIT_COMMITTER_EMAIL = "2069329624@qq.com"
+  git commit -m "Update personal homepage"
 } else {
   Write-Host "No new changes to commit."
 }
 
-$exists = gh repo view "JiangYunhang/$repo" 2>$null
-if (-not $exists) {
-  gh repo create $repo --public --source=. --remote=origin --push
-} else {
-  $remote = git remote 2>$null
-  if (-not $remote) {
-    git remote add origin "https://github.com/JiangYunhang/$repo.git"
-  }
-  git push -u origin main
+$remote = git remote 2>$null
+if (-not $remote) {
+  git remote add origin "https://github.com/$owner/$repo.git"
 }
 
-gh api -X PUT "repos/JiangYunhang/$repo/pages" -f build_type=workflow -f source[branch]=main -f source[path]=/ 2>$null
+git -c http.version=HTTP/1.1 push -u origin main
 Write-Host ""
-Write-Host "Done. Site URL: https://JiangYunhang.github.io/"
-Write-Host "If Pages is not live yet: GitHub repo -> Settings -> Pages -> Deploy from branch main / (root)"
+Write-Host "Done. Site: https://$owner.github.io/"

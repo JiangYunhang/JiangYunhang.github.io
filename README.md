@@ -1,10 +1,15 @@
 # Jiang Yunhang (姜运航)
 
-Personal academic homepage.
+Personal academic homepage · [JiangYunhang.github.io](https://JiangYunhang.github.io/)
 
-**Live site:** https://JiangYunhang.github.io/
+- B.S. student in **Data Science and Big Data Technology**, Anhui University of Finance and Economics (GPA 4.2/5, Rank 7/161)
+- Research: LLMs, Intelligent Agents, AI4SE, Medical AI (RAG / fine-tuning / multi-modal)
+- Email: `2069329624@qq.com` · GitHub: [@JiangYunhang](https://github.com/JiangYunhang)
 
-- Undergraduate · Data Science & Big Data Technology, Anhui University of Finance and Economics
-- Research: Medical AI / Large Models, AI Infra (MoE), Chip-design Code Generation, MFL–LM numerics
+Edit `js/site-data.js`, then:
 
-Edit content in `js/site-data.js`, then push to `main`.
+```powershell
+git add -A
+git commit -m "Update homepage"
+git -c http.version=HTTP/1.1 push origin main
+```

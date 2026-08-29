@@ -10,9 +10,9 @@
   --sidebar-w: 280px;
   --radius: 14px;
   --shadow: 0 10px 30px rgba(28, 36, 48, 0.08);
-  /* English: Times New Roman; Chinese: 华文中宋 */
+  /* English: Times New Roman; Chinese: 华文中宋 (local), then Noto Serif SC (web) */
   --font-en: "Times New Roman", Times, serif;
-  --font-zh: "STZhongsong", "华文中宋", "Songti SC", "Noto Serif SC", "SimSun", serif;
+  --font-zh: "STZhongsong", "华文中宋", "Noto Serif SC", "Songti SC", "SimSun", serif;
   --font-sans: var(--font-en), var(--font-zh);
   --font-display: var(--font-en), var(--font-zh);
 }
