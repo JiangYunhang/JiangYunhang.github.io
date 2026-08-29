@@ -83,9 +83,57 @@
 
     const avatar = $("#avatar");
     if (avatar) {
-      avatar.src = p.avatar || "assets/img/avatar.svg";
+      const avatarSrc = p.avatar || "assets/img/avatar.svg";
+      avatar.src = avatarSrc;
       avatar.alt = p.name || "Avatar";
+      // #region agent log
+      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+        body: JSON.stringify({
+          sessionId: "9db655",
+          runId: "avatar",
+          hypothesisId: "A",
+          location: "main.js:avatar-set",
+          message: "avatar src assigned",
+          data: { avatarSrc, complete: avatar.complete, naturalWidth: avatar.naturalWidth },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+      avatar.onload = () => {
+        // #region agent log
+        fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+          body: JSON.stringify({
+            sessionId: "9db655",
+            runId: "avatar",
+            hypothesisId: "B",
+            location: "main.js:avatar-onload",
+            message: "avatar loaded",
+            data: { src: avatar.currentSrc || avatar.src, w: avatar.naturalWidth, h: avatar.naturalHeight },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
+      };
       avatar.onerror = () => {
+        // #region agent log
+        fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+          body: JSON.stringify({
+            sessionId: "9db655",
+            runId: "avatar",
+            hypothesisId: "C",
+            location: "main.js:avatar-onerror",
+            message: "avatar failed, falling back to svg",
+            data: { failedSrc: avatarSrc },
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+        // #endregion
         avatar.onerror = null;
         avatar.src = "assets/img/avatar.svg";
       };

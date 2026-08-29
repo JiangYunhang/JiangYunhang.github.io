@@ -12,7 +12,7 @@ window.SITE = {
     role: "B.S. Student · Data Science & Big Data Technology, AUFE",
     location: "Bengbu, Anhui, China / 安徽蚌埠",
     email: "2069329624@qq.com",
-    avatar: "https://avatars.githubusercontent.com/u/321870676?v=4",
+    avatar: "assets/img/avatar.jpg",
     githubUser: "JiangYunhang",
     socials: [
       { label: "GitHub", href: "https://github.com/JiangYunhang", icon: "fa-brands fa-github" },

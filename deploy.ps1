@@ -12,7 +12,7 @@ Set-Location $root
 $files = @(
   ".gitignore", ".nojekyll", "index.html", "README.md", "deploy.ps1",
   "css/style.css", "js/main.js", "js/site-data.js",
-  "assets/img/avatar.svg", "assets/img/album-placeholder.svg",
+  "assets/img/avatar.jpg", "assets/img/avatar.svg", "assets/img/album-placeholder.svg",
   "assets/img/.gitkeep", "assets/music/.gitkeep"
 )
 foreach ($f in $files) {
