@@ -12,6 +12,8 @@ _site/
 # Private / bulky local materials — do not publish
 研究项目/
 港中深实习证明.docx
+Academic_CV_SJTU.docx
+_cv_extract.txt
 _internship_extract.txt
 debug-*.log
 _dom_dump.html
@@ -19,5 +21,9 @@ _audit_render.py
 _check_ids.py
 _verify_serve.py
 _live_*.html
+_final_*.html
+_final_*.js
+_final_*.css
 _upload_to_github/
 JiangYunhang.github.io-publish.zip
+*.png

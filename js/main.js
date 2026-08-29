@@ -177,7 +177,28 @@
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
+    setHtml("#projectsBody", timelineHtml(SITE.projects || []));
     setHtml("#researchBody", timelineHtml(SITE.research || []));
+
+    const skills = SITE.skills || {};
+    const skillRows = [
+      ["Languages", skills.languages],
+      ["Programming", skills.programming],
+      ["Tools", skills.tools],
+      ["Research", skills.research],
+    ].filter(([, v]) => v);
+    setHtml(
+      "#skillsBody",
+      skillRows.length
+        ? `<ul class="skills-list">${skillRows
+            .map(
+              ([label, value]) =>
+                `<li><span class="skill-label">${esc(label)}</span><span>${esc(value)}</span></li>`
+            )
+            .join("")}</ul>`
+        : ""
+    );
+
     setHtml("#newsBody", feedHtml(SITE.news || []));
     setHtml("#honorsBody", feedHtml(SITE.honors || []));
     setHtml("#fundingBody", feedHtml(SITE.funding || []));
@@ -245,7 +266,10 @@
       if (el) el.hidden = !cond;
     };
 
-    ["about", "education", "experience", "research", "repos", "news"].forEach((id) => show(id, true));
+    ["about", "education", "experience", "projects", "skills", "repos", "news"].forEach((id) =>
+      show(id, true)
+    );
+    show("research", (SITE.research || []).length > 0);
     show("honors", (SITE.honors || []).length > 0);
     show("funding", (SITE.funding || []).length > 0);
     show("publications", hasPubs);
