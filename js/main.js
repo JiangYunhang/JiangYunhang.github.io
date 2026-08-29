@@ -344,30 +344,70 @@
 
     loadGithubRepos().finally(syncScrollHints);
     requestAnimationFrame(syncScrollHints);
-    window.addEventListener("resize", syncScrollHints, { passive: true });
 
     const sidebar = $("#sidebar");
     const toggle = $("#navToggle");
     const backdrop = $("#navBackdrop");
+    const mobileMq = window.matchMedia("(max-width: 900px)");
 
     const setNavOpen = (open) => {
-      sidebar?.classList.toggle("open", open);
-      toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+      const next = Boolean(open) && mobileMq.matches;
+      sidebar?.classList.toggle("open", next);
+      document.body.classList.toggle("nav-lock", next);
+      toggle?.setAttribute("aria-expanded", next ? "true" : "false");
       if (backdrop) {
-        backdrop.hidden = !open;
-        backdrop.classList.toggle("is-visible", open);
+        backdrop.hidden = !next;
+        backdrop.classList.toggle("is-visible", next);
       }
+    };
+
+    const reportViewport = (reason) => {
+      // #region agent log
+      const docEl = document.documentElement;
+      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+        body: JSON.stringify({
+          sessionId: "9db655",
+          runId: "responsive",
+          hypothesisId: "R1",
+          location: "main.js:viewport",
+          message: "viewport layout probe",
+          data: {
+            reason,
+            w: window.innerWidth,
+            h: window.innerHeight,
+            mobile: mobileMq.matches,
+            overflowX: docEl.scrollWidth > docEl.clientWidth + 1,
+            scrollWidth: docEl.scrollWidth,
+            clientWidth: docEl.clientWidth,
+            contentWidth: $(".content")?.getBoundingClientRect().width || 0,
+            sidebarOpen: sidebar?.classList.contains("open") || false,
+          },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
     };
 
     toggle?.addEventListener("click", () => setNavOpen(!sidebar?.classList.contains("open")));
     backdrop?.addEventListener("click", () => setNavOpen(false));
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setNavOpen(false);
+    });
+    const onMq = () => {
+      if (!mobileMq.matches) setNavOpen(false);
+      reportViewport("mq-change");
+    };
+    if (mobileMq.addEventListener) mobileMq.addEventListener("change", onMq);
+    else mobileMq.addListener(onMq);
 
     const links = $$(".nav-link");
     const sections = [...new Set(links.map((l) => $(l.getAttribute("href"))))].filter(Boolean);
     links.forEach((link) => link.addEventListener("click", () => setNavOpen(false)));
 
     const setActive = () => {
-      const offset = 120;
+      const offset = mobileMq.matches ? 88 : 120;
       let currentId = sections[0]?.id;
       for (const section of sections) {
         if (section.getBoundingClientRect().top - offset <= 0) currentId = section.id;
@@ -377,7 +417,17 @@
       });
     };
     window.addEventListener("scroll", setActive, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        syncScrollHints();
+        setActive();
+        reportViewport("resize");
+      },
+      { passive: true }
+    );
     setActive();
+    reportViewport("init");
   } catch (err) {
     console.error(err);
   }

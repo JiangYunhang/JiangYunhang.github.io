@@ -8,9 +8,15 @@
   --line: rgba(21, 32, 41, 0.12);
   --accent: #0b5f52;
   --accent-soft: #cfe6df;
-  --sidebar-w: 280px;
+  --sidebar-w: clamp(248px, 22vw, 300px);
   --radius: 12px;
   --shadow: 0 8px 24px rgba(21, 32, 41, 0.07);
+  --content-max: 980px;
+  --pad-x: clamp(1rem, 2.5vw, 3rem);
+  --pad-y: clamp(1.5rem, 3.5vw, 4rem);
+  --fs-body: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  --fs-name: clamp(1.35rem, 1.15rem + 0.7vw, 1.75rem);
+  --fs-title: clamp(1.45rem, 1.2rem + 1.1vw, 2rem);
   /* English: Times New Roman; Chinese: 华文中宋 (local), then Noto Serif SC (web) */
   --font-en: "Times New Roman", Times, serif;
   --font-zh: "STZhongsong", "华文中宋", "Noto Serif SC", "Songti SC", "SimSun", serif;
@@ -26,18 +32,29 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: var(--fs-body);
   line-height: 1.65;
   background:
     radial-gradient(1100px 560px at 8% -8%, #d5e8e2 0%, transparent 58%),
     radial-gradient(800px 480px at 100% 0%, #d9e4ef 0%, transparent 52%),
     linear-gradient(180deg, var(--bg), var(--bg-accent));
   min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+body.nav-lock {
+  overflow: hidden;
+  touch-action: none;
 }
 
 a {
@@ -91,11 +108,17 @@ img {
   inset: 0 auto 0 0;
   width: var(--sidebar-w);
   padding: 28px 20px;
+  padding-top: max(28px, env(safe-area-inset-top));
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  padding-left: max(20px, env(safe-area-inset-left));
   background: rgba(247, 251, 249, 0.94);
   border-right: 1px solid var(--line);
   backdrop-filter: blur(10px);
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
   z-index: 30;
+  -webkit-overflow-scrolling: touch;
 }
 
 .profile {
@@ -104,8 +127,8 @@ img {
 }
 
 .avatar {
-  width: 128px;
-  height: 128px;
+  width: clamp(96px, 22vw, 128px);
+  height: clamp(96px, 22vw, 128px);
   margin: 0 auto 14px;
   border-radius: 50%;
   object-fit: cover;
@@ -129,15 +152,17 @@ img {
 .name {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-size: var(--fs-name);
   font-weight: 400;
   letter-spacing: 0.01em;
+  overflow-wrap: anywhere;
 }
 
 .name-cn {
   margin: 2px 0 10px;
   color: var(--muted);
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
 }
 
 .motto {
@@ -145,6 +170,8 @@ img {
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.45;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .profile-meta {
@@ -161,6 +188,14 @@ img {
   align-items: flex-start;
   margin-bottom: 8px;
   color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.profile-meta a,
+.profile-meta span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .profile-meta i {
@@ -230,14 +265,17 @@ img {
 
 .content {
   margin-left: var(--sidebar-w);
-  padding: 36px 48px 64px;
-  max-width: 980px;
+  padding: var(--pad-y) var(--pad-x) calc(var(--pad-y) + env(safe-area-inset-bottom));
+  max-width: var(--content-max);
+  width: calc(100% - var(--sidebar-w));
+  min-width: 0;
 }
 
 .section {
-  margin-bottom: 42px;
+  margin-bottom: clamp(28px, 4vw, 42px);
   scroll-margin-top: 24px;
   animation: rise-in 0.55s ease both;
+  min-width: 0;
 }
 
 .section:nth-of-type(2) { animation-delay: 0.04s; }
@@ -267,11 +305,12 @@ img {
 .section-title {
   margin: 0 0 16px;
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: var(--fs-title);
   font-weight: 400;
   display: flex;
   align-items: center;
   gap: 10px;
+  overflow-wrap: anywhere;
 }
 
 .emoji {
@@ -331,7 +370,7 @@ img {
 
 .skills-list li {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: minmax(96px, 140px) minmax(0, 1fr);
   gap: 12px;
   padding: 12px 16px;
   border-bottom: 1px dashed var(--line);
@@ -389,7 +428,7 @@ code {
 .feed li,
 .pub-list li {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: minmax(88px, 120px) minmax(0, 1fr);
   gap: 12px;
   padding: 10px 0;
   border-bottom: 1px dashed var(--line);
@@ -397,7 +436,7 @@ code {
 
 .feed li,
 .pub-list li {
-  grid-template-columns: 88px 1fr;
+  grid-template-columns: minmax(72px, 88px) minmax(0, 1fr);
   align-items: start;
 }
 
@@ -412,16 +451,20 @@ code {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .scroll-panel {
-  max-height: 280px;
+  max-height: min(42vh, 320px);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 8px 4px 8px 0;
   border: none;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scroll-panel::-webkit-scrollbar {
@@ -538,7 +581,7 @@ code {
 
 .repo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
   gap: 14px;
 }
 
@@ -629,12 +672,52 @@ code {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
+/* ---- Large desktop: keep reading column comfortable ---- */
+@media (min-width: 1280px) {
+  :root {
+    --content-max: 1040px;
+    --pad-x: 3.25rem;
+  }
+
+  .content {
+    margin-right: auto;
+  }
+}
+
+/* ---- Compact desktop / large tablet landscape ---- */
+@media (min-width: 901px) and (max-width: 1100px) {
+  :root {
+    --sidebar-w: 240px;
+    --pad-x: 1.5rem;
+    --pad-y: 1.75rem;
+  }
+
+  .avatar {
+    width: 108px;
+    height: 108px;
+  }
+
+  .timeline li {
+    grid-template-columns: minmax(84px, 100px) minmax(0, 1fr);
+  }
+
+  .skills-list li {
+    grid-template-columns: minmax(88px, 120px) minmax(0, 1fr);
+  }
+}
+
+/* ---- Mobile / small tablet ---- */
 @media (max-width: 900px) {
   .nav-toggle {
     display: grid;
     place-items: center;
+    top: max(12px, env(safe-area-inset-top));
+    left: max(12px, env(safe-area-inset-left));
+    width: 44px;
+    height: 44px;
   }
 
   .nav-backdrop {
@@ -642,10 +725,11 @@ code {
     position: fixed;
     inset: 0;
     z-index: 25;
-    background: rgba(21, 32, 41, 0.35);
+    background: rgba(21, 32, 41, 0.4);
     border: 0;
     padding: 0;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-backdrop.is-visible {
@@ -653,9 +737,12 @@ code {
   }
 
   .sidebar {
-    transform: translateX(-105%);
-    transition: transform 0.25s ease;
+    width: min(86vw, 320px);
+    max-width: calc(100vw - 48px);
+    transform: translateX(calc(-100% - 8px));
+    transition: transform 0.28s ease;
     box-shadow: var(--shadow);
+    will-change: transform;
   }
 
   .sidebar.open {
@@ -664,7 +751,13 @@ code {
 
   .content {
     margin-left: 0;
-    padding: 72px 20px 48px;
+    width: 100%;
+    max-width: none;
+    padding:
+      calc(68px + env(safe-area-inset-top))
+      max(16px, env(safe-area-inset-right))
+      calc(40px + env(safe-area-inset-bottom))
+      max(16px, env(safe-area-inset-left));
   }
 
   .timeline li,
@@ -677,13 +770,119 @@ code {
     gap: 4px;
   }
 
-  .section-title {
-    font-size: 1.65rem;
+  .time {
+    white-space: normal;
+  }
+
+  .scroll-panel {
+    max-height: min(58vh, 420px);
+  }
+
+  .repo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badges {
+    gap: 8px;
+  }
+
+  .badges img {
+    max-width: 100%;
+    height: auto;
+    max-height: 22px;
+  }
+
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
   }
 }
 
 @media (min-width: 901px) {
   .nav-backdrop {
     display: none !important;
+  }
+
+  body.nav-lock {
+    overflow: visible;
+    touch-action: auto;
+  }
+}
+
+/* ---- Narrow phones ---- */
+@media (max-width: 480px) {
+  :root {
+    --fs-title: 1.4rem;
+    --fs-name: 1.3rem;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .motto {
+    font-size: 0.84rem;
+  }
+
+  .profile-meta {
+    font-size: 0.82rem;
+  }
+
+  .interest-tag {
+    font-size: 0.76rem;
+    padding: 3px 8px;
+  }
+
+  .content {
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
+  }
+
+  .skills-list li {
+    padding: 10px 12px;
+  }
+
+  .repo-card {
+    padding: 12px 14px;
+  }
+}
+
+/* ---- Very small phones ---- */
+@media (max-width: 360px) {
+  .sidebar {
+    width: min(92vw, 300px);
+  }
+
+  .section-title {
+    gap: 6px;
+  }
+
+  .emoji {
+    font-size: 0.95em;
+  }
+}
+
+/* ---- Short landscape phones ---- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .sidebar {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 8px;
+  }
+
+  .scroll-panel {
+    max-height: 70vh;
+  }
+
+  .content {
+    padding-top: calc(56px + env(safe-area-inset-top));
   }
 }
