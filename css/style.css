@@ -204,6 +204,30 @@ img {
 .section {
   margin-bottom: 42px;
   scroll-margin-top: 24px;
+  animation: rise-in 0.55s ease both;
+}
+
+.section:nth-of-type(2) { animation-delay: 0.04s; }
+.section:nth-of-type(3) { animation-delay: 0.08s; }
+.section:nth-of-type(4) { animation-delay: 0.12s; }
+.section:nth-of-type(5) { animation-delay: 0.16s; }
+.section:nth-of-type(6) { animation-delay: 0.2s; }
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    animation: none;
+  }
 }
 
 .section-title {

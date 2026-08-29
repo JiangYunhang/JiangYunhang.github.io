@@ -10,7 +10,7 @@ window.SITE = {
     title: "Jiang Yunhang (姜运航) - Homepage",
     motto: ["学而不思则罔", "思而不学则殆"],
     role: "Undergraduate · Data Science & Big Data Technology, AUFE",
-    location: "Bengbu / China",
+    location: "Bengbu / 蚌埠, China",
     email: "you@example.com",
     avatar: "https://avatars.githubusercontent.com/u/321870676?v=4",
     githubUser: "JiangYunhang",
