@@ -18,3 +18,6 @@ _dom_dump.html
 _audit_render.py
 _check_ids.py
 _verify_serve.py
+_live_*.html
+_upload_to_github/
+JiangYunhang.github.io-publish.zip
