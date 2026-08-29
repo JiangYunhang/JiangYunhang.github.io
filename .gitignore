@@ -1,0 +1,20 @@
+.DS_Store
+Thumbs.db
+*.mp3
+*.wav
+.idea/
+.vscode/
+.cursor/
+node_modules/
+_site/
+.jekyll-cache/
+
+# Private / bulky local materials — do not publish
+研究项目/
+港中深实习证明.docx
+_internship_extract.txt
+debug-*.log
+_dom_dump.html
+_audit_render.py
+_check_ids.py
+_verify_serve.py

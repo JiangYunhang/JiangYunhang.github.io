@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jiang Yunhang (姜运航) - Homepage</title>
+  <meta name="description" content="Personal academic homepage" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/321870676?v=4" />
+  <meta name="theme-color" content="#0f6b5c" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="profile">
+      <img class="avatar" id="avatar" src="assets/img/avatar.svg" alt="Avatar" />
+      <h1 class="name" id="name">Your Name</h1>
+      <p class="name-cn" id="nameCn">你的中文名</p>
+      <p class="motto" id="motto"></p>
+      <ul class="profile-meta">
+        <li><i class="fa-solid fa-graduation-cap"></i> <span id="role"></span></li>
+        <li><i class="fa-solid fa-location-dot"></i> <span id="location"></span></li>
+        <li><i class="fa-solid fa-envelope"></i> <a id="email" href="mailto:you@example.com">you@example.com</a></li>
+      </ul>
+      <div class="socials" id="socials"></div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+  </aside>
+
+  <main class="content">
+    <section id="about" class="section">
+      <h2 class="section-title"><span class="emoji">😉</span> About Me</h2>
+      <div class="prose" id="aboutBody"></div>
+      <div class="badges" id="badges"></div>
+    </section>
+
+    <section id="education" class="section">
+      <h2 class="section-title"><span class="emoji">📖</span> Education</h2>
+      <div id="educationBody"></div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2 class="section-title"><span class="emoji">💻</span> Experience</h2>
+      <div id="experienceBody"></div>
+    </section>
+
+    <section id="research" class="section">
+      <h2 class="section-title"><span class="emoji">🔬</span> Research</h2>
+      <div id="researchBody"></div>
+    </section>
+
+    <section id="repos" class="section">
+      <h2 class="section-title"><span class="emoji">🐙</span> GitHub Repositories</h2>
+      <p class="note" id="reposMeta"></p>
+      <div class="repo-grid" id="reposBody">
+        <p class="muted">Loading repositories…</p>
+      </div>
+      <p class="repo-more" id="reposMore"></p>
+    </section>
+
+    <section id="news" class="section">
+      <h2 class="section-title"><span class="emoji">🔥</span> News</h2>
+      <div class="scroll-panel" tabindex="0">
+        <div id="newsBody"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="honors" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">🏅</span> Honors</h2>
+      <div class="scroll-panel" tabindex="0">
+        <div id="honorsBody"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="funding" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">💰</span> Funding</h2>
+      <div class="scroll-panel" tabindex="0">
+        <div id="fundingBody"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="publications" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">💡</span> Publications</h2>
+      <p class="note" id="pubNote"></p>
+
+      <h3 class="subhead">Conference Papers</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="confPubs"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+
+      <h3 class="subhead">Journal Papers</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="journalPubs"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="patents" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">🔬</span> Patents</h2>
+      <h3 class="subhead">CN Invention Patents</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="inventionPatents"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+
+      <h3 class="subhead">CN Design Patents</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="designPatents"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="software" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">📱</span> Software</h2>
+      <div class="scroll-panel" tabindex="0">
+        <div id="softwareBody"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="competitions" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">🏇</span> Competitions</h2>
+      <h3 class="subhead">International &amp; National Prizes</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="nationalPrizes"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+
+      <h3 class="subhead">Regional &amp; Provincial Prizes</h3>
+      <div class="scroll-panel" tabindex="0">
+        <div id="regionalPrizes"></div>
+      </div>
+      <p class="scroll-hint">⬆ Scrollable</p>
+    </section>
+
+    <section id="music" class="section" hidden>
+      <h2 class="section-title"><span class="emoji">🎼</span> My Favorite Music</h2>
+      <blockquote class="quote" id="musicQuote"></blockquote>
+      <div class="music-grid" id="musicGrid"></div>
+    </section>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> <span id="footerName">Your Name</span>. Hosted on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+      <p class="muted">Hosted for <a href="https://github.com/JiangYunhang" target="_blank" rel="noopener noreferrer">@JiangYunhang</a>.</p>
+    </footer>
+  </main>
+
+  <script src="js/site-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
