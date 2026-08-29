@@ -94,6 +94,27 @@ window.SITE = {
       noteHtml:
         '<span class="muted">Fine-tuned LLMs on EHR and clinical notes for sepsis early detection/severity classification; RAG and prompt engineering for clinical decision support, informing grounded LLM outputs with external knowledge.<br />基于 EHR 与临床文本微调 LLM 做脓毒症早筛与严重度分类；实践 RAG 与提示工程以增强临床决策支持。<em>PyTorch, Transformers, LLM Fine-tuning, RAG, Prompt Engineering</em></span>',
     },
+    {
+      time: "2026",
+      title: "Numerical Evidence for Weak Order Two of the MFL–LM Scheme",
+      place: "Mean-Field Langevin · Scientific Computing",
+      noteHtml:
+        '<span class="muted">Building reproducible numerical evidence for long-time weak order two of the LM / non-Markovian Euler discretization for mean-field Langevin dynamics; Gate-based verification pipeline (CPU FP64 coupling, Ascend multi-card parity) with careful claim boundaries between theory and Monte Carlo evidence.<br />围绕 mean-field Langevin 的 LM 离散化，设计可复现的长期弱二阶数值证据与分阶段验证流水线（CPU FP64 耦合、昇腾多卡一致性等），严格区分理论结果与数值证据边界。<em>Python, NumPy/PyTorch, Monte Carlo, Multi-index / Coupling, Ascend</em></span>',
+    },
+    {
+      time: "2026",
+      title: "Code Generation for Chip Design (LLM / Agent Survey & Research)",
+      place: "AI4EDA · RTL / Verification",
+      noteHtml:
+        '<span class="muted">Industry-oriented research on LLM/Agent-driven code generation for chip design: spec→RTL/HDL, assertions/UVM/testbench, and EDA scripting assistants; mapped Synopsys/Cadence and related ecosystems with capability vs. marketing evidence and academic–industry gaps.<br />面向芯片设计的代码生成调研与研究：聚焦规格→RTL/HDL、验证代码与 EDA 脚本助手，梳理产业能力与营销口径，并对照学术 Benchmark / Agent 闭环差距。<em>LLM, Agents, RTL/HDL, Verification, EDA</em></span>',
+    },
+    {
+      time: "2026",
+      title: "MoE Inference Load Balancing (AI Infra)",
+      place: "Systems · Mixture-of-Experts",
+      noteHtml:
+        '<span class="muted">AI infrastructure work on MoE inference load balancing after the gate and before expert GEMM: selecting physical expert replicas under Expert Parallelism to reduce straggler EP ranks, jointly considering placement/replication and end-to-end latency / goodput trade-offs.<br />面向 MoE 推理的负载均衡：在 Gate 之后、Expert 计算之前选择物理专家副本，缓解 EP Rank 木桶效应，并结合副本放置与端到端时延 / Goodput 权衡评估上线价值。<em>MoE, Expert Parallelism, Load Balancing, Inference Systems</em></span>',
+    },
   ],
 
   // kept for compatibility; content moved to Projects

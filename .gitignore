@@ -15,6 +15,8 @@ _site/
 Academic_CV_SJTU.docx
 _cv_extract.txt
 _internship_extract.txt
+_chip_extract.txt
+_moe_extract.txt
 debug-*.log
 _dom_dump.html
 _audit_render.py
