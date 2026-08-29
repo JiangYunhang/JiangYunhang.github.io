@@ -348,11 +348,38 @@
 
     const sidebar = $("#sidebar");
     const toggle = $("#navToggle");
-    toggle?.addEventListener("click", () => sidebar?.classList.toggle("open"));
+    const backdrop = $("#navBackdrop");
+
+    const setNavOpen = (open) => {
+      sidebar?.classList.toggle("open", open);
+      toggle?.setAttribute("aria-expanded", open ? "true" : "false");
+      if (backdrop) {
+        backdrop.hidden = !open;
+        backdrop.classList.toggle("is-visible", open);
+      }
+      // #region agent log
+      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+        body: JSON.stringify({
+          sessionId: "9db655",
+          runId: "visual-mobile",
+          hypothesisId: "C",
+          location: "main.js:setNavOpen",
+          message: "mobile nav state",
+          data: { open, hasBackdrop: !!backdrop },
+          timestamp: Date.now(),
+        }),
+      }).catch(() => {});
+      // #endregion
+    };
+
+    toggle?.addEventListener("click", () => setNavOpen(!sidebar?.classList.contains("open")));
+    backdrop?.addEventListener("click", () => setNavOpen(false));
 
     const links = $$(".nav-link");
     const sections = [...new Set(links.map((l) => $(l.getAttribute("href"))))].filter(Boolean);
-    links.forEach((link) => link.addEventListener("click", () => sidebar?.classList.remove("open")));
+    links.forEach((link) => link.addEventListener("click", () => setNavOpen(false)));
 
     const setActive = () => {
       const offset = 120;

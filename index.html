@@ -17,13 +17,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="icon" href="assets/img/avatar.jpg" />
-  <meta name="theme-color" content="#0f6b5c" />
-  <link rel="stylesheet" href="css/style.css?v=f740817b" />
+  <meta name="theme-color" content="#0b5f52" />
+  <link rel="preload" href="assets/img/avatar.jpg" as="image" />
+  <link rel="stylesheet" href="css/style.css?v=f875ee2b" />
 </head>
 <body>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+  <a class="skip-link" href="#about">Skip to content</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">
     <i class="fa-solid fa-bars"></i>
   </button>
+  <button class="nav-backdrop" id="navBackdrop" type="button" aria-label="Close navigation" hidden></button>
 
   <aside class="sidebar" id="sidebar">
     <div class="profile">
@@ -173,7 +176,7 @@
     </footer>
   </main>
 
-  <script src="js/site-data.js?v=f740817b"></script>
-  <script src="js/main.js?v=f740817b"></script>
+  <script src="js/site-data.js?v=f875ee2b"></script>
+  <script src="js/main.js?v=f875ee2b"></script>
 </body>
 </html>
