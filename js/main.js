@@ -94,25 +94,6 @@
     setText("#name", p.name);
     setText("#nameCn", p.nameCn);
     setHtml("#motto", (p.motto || []).map((line) => `<em>${esc(line)}</em>`).join("<br />"));
-    // #region agent log
-    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-      body: JSON.stringify({
-        sessionId: "9db655",
-        runId: "motto",
-        hypothesisId: "M1",
-        location: "main.js:motto",
-        message: "motto rendered",
-        data: {
-          motto: p.motto || [],
-          hasOldZh: (p.motto || []).some((l) => /学而不思|思而不学/.test(l)),
-          hasNew: (p.motto || []).some((l) => /Canvas Unfolding Heavenly Kaleidoscope/.test(l)),
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     setText("#role", p.role);
     setText("#location", p.location);
 
@@ -195,47 +176,8 @@
     );
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
-    // #region agent log
-    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-      body: JSON.stringify({
-        sessionId: "9db655",
-        runId: "gpa-remove",
-        hypothesisId: "G1",
-        location: "main.js:education",
-        message: "education note GPA/rank check",
-        data: {
-          note: (SITE.education || [])[0]?.noteHtml || "",
-          hasGpa: /GPA|4\.2\/5|7\/161|Rank/i.test((SITE.education || [])[0]?.noteHtml || ""),
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
     setHtml("#projectsBody", timelineHtml(SITE.projects || []));
-    // #region agent log
-    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-      body: JSON.stringify({
-        sessionId: "9db655",
-        runId: "projects-add",
-        hypothesisId: "P1",
-        location: "main.js:projects",
-        message: "projects rendered",
-        data: {
-          count: (SITE.projects || []).length,
-          titles: (SITE.projects || []).map((p) => p.title),
-          hasMfl: (SITE.projects || []).some((p) => /MFL/.test(p.title || "")),
-          hasChip: (SITE.projects || []).some((p) => /Chip Design/.test(p.title || "")),
-          hasMoe: (SITE.projects || []).some((p) => /MoE/.test(p.title || "")),
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     setHtml("#researchBody", timelineHtml(SITE.research || []));
 
     const skills = SITE.skills || {};
@@ -415,21 +357,6 @@
         backdrop.hidden = !open;
         backdrop.classList.toggle("is-visible", open);
       }
-      // #region agent log
-      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-        body: JSON.stringify({
-          sessionId: "9db655",
-          runId: "visual-mobile",
-          hypothesisId: "C",
-          location: "main.js:setNavOpen",
-          message: "mobile nav state",
-          data: { open, hasBackdrop: !!backdrop },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
     };
 
     toggle?.addEventListener("click", () => setNavOpen(!sidebar?.classList.contains("open")));
