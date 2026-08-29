@@ -34,15 +34,20 @@
 
   const timelineHtml = (items) =>
     `<ul class="timeline">${items
-      .map(
-        (it) => `<li>
+      .map((it) => {
+        const note = it.noteHtml
+          ? it.noteHtml
+          : it.note
+            ? `<span class="muted">${esc(it.note)}</span>`
+            : "";
+        return `<li>
         <span class="time">${esc(it.time)}</span>
         <div class="item-body">
           <strong>${esc(it.title)}</strong>, ${esc(it.place)}
-          <span class="muted">${esc(it.note || "")}</span>
+          ${note}
         </div>
-      </li>`
-      )
+      </li>`;
+      })
       .join("")}</ul>`;
 
   const featuredPubsHtml = (items = []) =>
@@ -158,12 +163,16 @@
     );
 
     const about = SITE.about || {};
+    const interestTags = (about.interests || [])
+      .map((t) => `<span class="interest-tag">${esc(t)}</span>`)
+      .join("");
     setHtml(
       "#aboutBody",
       [about.intro, about.focus, about.services, about.communities, about.contact]
         .filter(Boolean)
         .map((html) => `<p>${html}</p>`)
-        .join("")
+        .join("") +
+        (interestTags ? `<div class="interest-tags">${interestTags}</div>` : "")
     );
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
