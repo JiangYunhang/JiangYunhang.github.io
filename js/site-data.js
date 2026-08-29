@@ -71,12 +71,12 @@ window.SITE = {
         '<span class="muted">Engaged in three medical AI projects: HCC immunotherapy response prediction, renal tumor multi-phase CT enhancement, and sepsis classification with LLMs. Built PyTorch models for medical image analysis, multi-modal fusion, and clinical NLP.<br />参与三项医学人工智能研究：肝癌免疫治疗反应预测、肾脏肿瘤多期 CT 增强预测、基于大语言模型的脓毒症分类；使用 PyTorch 开展医学影像分析、多模态融合与临床 NLP。</span>',
     },
     {
-      time: "2026 – Present",
+      time: "2026.08 – Present",
       title: "Undergraduate Research Intern",
       place:
-        "Shanghai Jiao Tong University, School of Computer Science · RISX-X (上海交通大学计算机学院 · RISX-X)",
+        "Shanghai Jiao Tong University, School of Computer Science · RISE-X (上海交通大学计算机学院 · RISE-X)",
       noteHtml:
-        '<span class="muted">Conducting research on <strong>LLM/Agent-driven code generation for chip design</strong> (AI4EDA): industry and academic surveys on spec→RTL/HDL, verification (assertions/UVM/testbench), and EDA scripting assistants; analyzing Synopsys/Cadence ecosystems, Benchmarks, and multi-agent / EDA-in-the-loop research trends. Primary project mirrors the homepage Projects entry <em>Code Generation for Chip Design</em>.<br />在 RISX-X 开展<strong>面向芯片设计的代码生成</strong>研究：梳理规格→RTL/HDL、验证代码与 EDA 脚本助手的产业与学术进展，对照 Benchmark 与 Multi-Agent / EDA 闭环等方向；主项目与 Projects 中的「Code Generation for Chip Design」条目对应。<em>LLM, Agents, RTL/HDL, Verification, EDA</em></span>',
+        '<span class="muted">Conducting research on <strong>LLM/Agent-driven code generation for chip design</strong> (AI4EDA): industry and academic surveys on spec→RTL/HDL, verification (assertions/UVM/testbench), and EDA scripting assistants; analyzing Synopsys/Cadence ecosystems, Benchmarks, and multi-agent / EDA-in-the-loop research trends. Primary project mirrors the homepage Projects entry <em>Code Generation for Chip Design</em>.<br />在 RISE-X 开展<strong>面向芯片设计的代码生成</strong>研究：梳理规格→RTL/HDL、验证代码与 EDA 脚本助手的产业与学术进展，对照 Benchmark 与 Multi-Agent / EDA 闭环等方向；主项目与 Projects 中的「Code Generation for Chip Design」条目对应。<em>LLM, Agents, RTL/HDL, Verification, EDA</em></span>',
     },
   ],
 
@@ -112,9 +112,9 @@ window.SITE = {
     {
       time: "2026",
       title: "Code Generation for Chip Design (LLM / Agent Survey & Research)",
-      place: "AI4EDA · RTL / Verification · SJTU CS RISX-X",
+      place: "AI4EDA · RTL / Verification · SJTU CS RISE-X",
       noteHtml:
-        '<span class="muted">Industry- and academia-oriented research under <strong>SJTU CS · RISX-X</strong> on LLM/Agent-driven code generation for chip design: spec→RTL/HDL, assertions/UVM/testbench, and EDA scripting assistants; mapped Synopsys/Cadence ecosystems with capability vs. marketing evidence and academic–industry gaps (Benchmarks, multi-agent / EDA-in-the-loop trends).<br />依托<strong>上海交通大学计算机学院 RISX-X</strong> 的面向芯片设计代码生成调研与研究：聚焦规格→RTL/HDL、验证代码与 EDA 脚本助手，梳理产业能力与营销口径，并对照学术 Benchmark / Agent 闭环差距。<em>LLM, Agents, RTL/HDL, Verification, EDA</em></span>',
+        '<span class="muted">Industry- and academia-oriented research under <strong>SJTU CS · RISE-X</strong> on LLM/Agent-driven code generation for chip design: spec→RTL/HDL, assertions/UVM/testbench, and EDA scripting assistants; mapped Synopsys/Cadence ecosystems with capability vs. marketing evidence and academic–industry gaps (Benchmarks, multi-agent / EDA-in-the-loop trends).<br />依托<strong>上海交通大学计算机学院 RISE-X</strong> 的面向芯片设计代码生成调研与研究：聚焦规格→RTL/HDL、验证代码与 EDA 脚本助手，梳理产业能力与营销口径，并对照学术 Benchmark / Agent 闭环差距。<em>LLM, Agents, RTL/HDL, Verification, EDA</em></span>',
     },
     {
       time: "2026",
@@ -146,8 +146,8 @@ window.SITE = {
       text: "🎉 Started Research Assistant internship at <strong>CUHK-Shenzhen · Shenzhen Research Institute of Big Data</strong>.",
     },
     {
-      time: "2026",
-      text: "🔬 Joined research at <strong>SJTU School of Computer Science · RISX-X</strong> on LLM/Agent code generation for chip design.",
+      time: "2026.08",
+      text: "🔬 Joined research at <strong>SJTU School of Computer Science · RISE-X</strong> on LLM/Agent code generation for chip design.",
     },
     {
       time: "2025.09",
