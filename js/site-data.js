@@ -142,12 +142,12 @@ window.SITE = {
       text: '🌐 个人主页上线 · Homepage launched at <a href="https://JiangYunhang.github.io/" target="_blank" rel="noopener noreferrer">JiangYunhang.github.io</a>.',
     },
     {
-      time: "2026.06",
-      text: "🎉 Started Research Assistant internship at <strong>CUHK-Shenzhen · Shenzhen Research Institute of Big Data</strong>.",
-    },
-    {
       time: "2026.08",
       text: "🔬 Joined research at <strong>SJTU School of Computer Science · RISE-X</strong> on LLM/Agent code generation for chip design.",
+    },
+    {
+      time: "2026.06",
+      text: "🎉 Started Research Assistant internship at <strong>CUHK-Shenzhen · Shenzhen Research Institute of Big Data</strong>.",
     },
     {
       time: "2025.09",

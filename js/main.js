@@ -108,6 +108,9 @@
     } else if (emailLi) {
       emailLi.hidden = true;
     }
+    // #region agent log
+    fetch('http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'9db655'},body:JSON.stringify({sessionId:'9db655',runId:'continue-polish',hypothesisId:'H4',location:'main.js:email',message:'sidebar email after render',data:{profileEmail:p.email||null,domEmail:mail?.textContent||null,hidden:!!emailLi?.hidden,isPlaceholder:emailIsPlaceholder},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
 
     const markPlaceholder = (el, cond) => {
       const li = el?.closest?.("li");
@@ -200,6 +203,9 @@
     );
 
     setHtml("#newsBody", feedHtml(SITE.news || []));
+    // #region agent log
+    fetch('http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'9db655'},body:JSON.stringify({sessionId:'9db655',runId:'continue-polish',hypothesisId:'H9',location:'main.js:news',message:'news timeline order',data:{times:(SITE.news||[]).map(n=>n.time),firstTextSnippet:((SITE.news||[])[0]?.text||'').slice(0,60)},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion
     setHtml("#honorsBody", feedHtml(SITE.honors || []));
     setHtml("#fundingBody", feedHtml(SITE.funding || []));
 
@@ -294,6 +300,10 @@
         const res = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
         if (!res.ok) throw new Error(`GitHub API ${res.status}`);
         const repos = await res.json();
+
+        // #region agent log
+        fetch('http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'9db655'},body:JSON.stringify({sessionId:'9db655',runId:'continue-polish',hypothesisId:'H10',location:'main.js:repos',message:'github repos fetched',data:{status:res.status,count:Array.isArray(repos)?repos.length:-1,names:Array.isArray(repos)?repos.map(r=>r.name).slice(0,8):[]},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
 
         if (!Array.isArray(repos) || repos.length === 0) {
           body.innerHTML = `<div class="repo-empty">
