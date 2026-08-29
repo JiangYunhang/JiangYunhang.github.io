@@ -94,6 +94,25 @@
     setText("#name", p.name);
     setText("#nameCn", p.nameCn);
     setHtml("#motto", (p.motto || []).map((line) => `<em>${esc(line)}</em>`).join("<br />"));
+    // #region agent log
+    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+      body: JSON.stringify({
+        sessionId: "9db655",
+        runId: "motto",
+        hypothesisId: "M1",
+        location: "main.js:motto",
+        message: "motto rendered",
+        data: {
+          motto: p.motto || [],
+          hasOldZh: (p.motto || []).some((l) => /学而不思|思而不学/.test(l)),
+          hasNew: (p.motto || []).some((l) => /Canvas Unfolding Heavenly Kaleidoscope/.test(l)),
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     setText("#role", p.role);
     setText("#location", p.location);
 

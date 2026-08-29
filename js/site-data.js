@@ -8,7 +8,7 @@ window.SITE = {
     name: "Jiang Yunhang",
     nameCn: "姜运航",
     title: "Jiang Yunhang (姜运航) - Homepage",
-    motto: ["学而不思则罔", "思而不学则殆"],
+    motto: ["Canvas Unfolding Heavenly Kaleidoscope."],
     role: "B.S. Student · Data Science & Big Data Technology, AUFE",
     location: "Bengbu, Anhui, China / 安徽蚌埠",
     email: "2069329624@qq.com",
