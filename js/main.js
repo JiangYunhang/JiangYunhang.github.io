@@ -177,6 +177,26 @@
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
+    // #region agent log
+    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+      body: JSON.stringify({
+        sessionId: "9db655",
+        runId: "sjtu-risx",
+        hypothesisId: "S1",
+        location: "main.js:experience",
+        message: "experience entries after SJTU RISX-X",
+        data: {
+          count: (SITE.experience || []).length,
+          places: (SITE.experience || []).map((e) => e.place),
+          hasRisx: (SITE.experience || []).some((e) => /RISX-X/.test(e.place || "")),
+          chipPlace: (SITE.projects || []).find((p) => /Chip Design/.test(p.title || ""))?.place || "",
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     setHtml("#projectsBody", timelineHtml(SITE.projects || []));
     setHtml("#researchBody", timelineHtml(SITE.research || []));
 
