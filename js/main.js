@@ -177,27 +177,6 @@
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
-    // #region agent log
-    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-      body: JSON.stringify({
-        sessionId: "9db655",
-        runId: "sjtu-risx",
-        hypothesisId: "S1",
-        location: "main.js:experience",
-        message: "experience entries after SJTU RISE-X",
-        data: {
-          count: (SITE.experience || []).length,
-          places: (SITE.experience || []).map((e) => e.place),
-          hasRise: (SITE.experience || []).some((e) => /RISE-X/.test(e.place || "")),
-          riseTime: (SITE.experience || []).find((e) => /RISE-X/.test(e.place || ""))?.time || "",
-          chipPlace: (SITE.projects || []).find((p) => /Chip Design/.test(p.title || ""))?.place || "",
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     setHtml("#projectsBody", timelineHtml(SITE.projects || []));
     setHtml("#researchBody", timelineHtml(SITE.research || []));
 
@@ -382,35 +361,6 @@
       }
     };
 
-    const reportViewport = (reason) => {
-      // #region agent log
-      const docEl = document.documentElement;
-      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-        body: JSON.stringify({
-          sessionId: "9db655",
-          runId: "responsive",
-          hypothesisId: "R1",
-          location: "main.js:viewport",
-          message: "viewport layout probe",
-          data: {
-            reason,
-            w: window.innerWidth,
-            h: window.innerHeight,
-            mobile: mobileMq.matches,
-            overflowX: docEl.scrollWidth > docEl.clientWidth + 1,
-            scrollWidth: docEl.scrollWidth,
-            clientWidth: docEl.clientWidth,
-            contentWidth: $(".content")?.getBoundingClientRect().width || 0,
-            sidebarOpen: sidebar?.classList.contains("open") || false,
-          },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
-    };
-
     toggle?.addEventListener("click", () => setNavOpen(!sidebar?.classList.contains("open")));
     backdrop?.addEventListener("click", () => setNavOpen(false));
     window.addEventListener("keydown", (e) => {
@@ -418,7 +368,6 @@
     });
     const onMq = () => {
       if (!mobileMq.matches) setNavOpen(false);
-      reportViewport("mq-change");
     };
     if (mobileMq.addEventListener) mobileMq.addEventListener("change", onMq);
     else mobileMq.addListener(onMq);
@@ -443,12 +392,10 @@
       () => {
         syncScrollHints();
         setActive();
-        reportViewport("resize");
       },
       { passive: true }
     );
     setActive();
-    reportViewport("init");
   } catch (err) {
     console.error(err);
   }
