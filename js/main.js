@@ -83,57 +83,9 @@
 
     const avatar = $("#avatar");
     if (avatar) {
-      const avatarSrc = p.avatar || "assets/img/avatar.svg";
-      avatar.src = avatarSrc;
+      avatar.src = p.avatar || "assets/img/avatar.svg";
       avatar.alt = p.name || "Avatar";
-      // #region agent log
-      fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-        body: JSON.stringify({
-          sessionId: "9db655",
-          runId: "avatar",
-          hypothesisId: "A",
-          location: "main.js:avatar-set",
-          message: "avatar src assigned",
-          data: { avatarSrc, complete: avatar.complete, naturalWidth: avatar.naturalWidth },
-          timestamp: Date.now(),
-        }),
-      }).catch(() => {});
-      // #endregion
-      avatar.onload = () => {
-        // #region agent log
-        fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-          body: JSON.stringify({
-            sessionId: "9db655",
-            runId: "avatar",
-            hypothesisId: "B",
-            location: "main.js:avatar-onload",
-            message: "avatar loaded",
-            data: { src: avatar.currentSrc || avatar.src, w: avatar.naturalWidth, h: avatar.naturalHeight },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
-      };
       avatar.onerror = () => {
-        // #region agent log
-        fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-          body: JSON.stringify({
-            sessionId: "9db655",
-            runId: "avatar",
-            hypothesisId: "C",
-            location: "main.js:avatar-onerror",
-            message: "avatar failed, falling back to svg",
-            data: { failedSrc: avatarSrc },
-            timestamp: Date.now(),
-          }),
-        }).catch(() => {});
-        // #endregion
         avatar.onerror = null;
         avatar.src = "assets/img/avatar.svg";
       };
@@ -222,27 +174,6 @@
         .join("") +
         (interestTags ? `<div class="interest-tags">${interestTags}</div>` : "")
     );
-    // #region agent log
-    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
-      body: JSON.stringify({
-        sessionId: "9db655",
-        runId: "cv-enrich",
-        hypothesisId: "E",
-        location: "main.js:about-render",
-        message: "about/projects rendered",
-        data: {
-          focusLen: (about.focus || "").length,
-          hasAi4seAgents: /multi-agent|多代理/.test(about.focus || ""),
-          projectCount: (SITE.projects || []).length,
-          expHasZh: /参与三项/.test((SITE.experience || [])[0]?.noteHtml || ""),
-          avatar: (SITE.profile || {}).avatar,
-        },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
@@ -400,7 +331,20 @@
       }
     };
 
-    loadGithubRepos();
+    const syncScrollHints = () => {
+      $$(".scroll-panel").forEach((panel) => {
+        const section = panel.closest(".section");
+        const hint = section?.querySelector(".scroll-hint");
+        if (!hint) return;
+        const needsScroll = panel.scrollHeight > panel.clientHeight + 2;
+        hint.hidden = !needsScroll;
+        panel.classList.toggle("is-scrollable", needsScroll);
+      });
+    };
+
+    loadGithubRepos().finally(syncScrollHints);
+    requestAnimationFrame(syncScrollHints);
+    window.addEventListener("resize", syncScrollHints, { passive: true });
 
     const sidebar = $("#sidebar");
     const toggle = $("#navToggle");
