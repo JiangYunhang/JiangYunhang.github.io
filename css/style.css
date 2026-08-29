@@ -92,6 +92,7 @@ img {
   margin: 0 auto 14px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: 50% 40%;
   border: 3px solid #fff;
   box-shadow: var(--shadow);
 }

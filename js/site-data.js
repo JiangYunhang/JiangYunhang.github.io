@@ -32,9 +32,9 @@ window.SITE = {
 
   about: {
     intro:
-      '🌱 你好，我是<strong>姜运航（Jiang Yunhang）</strong>，安徽财经大学<strong>数据科学与大数据技术</strong>专业本科生。<br />Hi, I’m <strong>Jiang Yunhang</strong>, an undergraduate in <strong>Data Science and Big Data Technology</strong> at <strong>Anhui University of Finance and Economics</strong>, Bengbu, China.',
+      '🌱 你好，我是<strong>姜运航（Jiang Yunhang）</strong>，安徽财经大学<strong>数据科学与大数据技术</strong>专业本科生（蚌埠）。<br />Hi, I’m <strong>Jiang Yunhang</strong>, an undergraduate in <strong>Data Science and Big Data Technology</strong> at <strong>Anhui University of Finance and Economics</strong>, Bengbu, China.',
     focus:
-      "🔭 Research interest lies at the intersection of <strong>Deep Learning</strong> and <strong>Natural Language Processing</strong>, with emphasis on <strong>Large Language Models (LLMs)</strong>, <strong>Intelligent Agents</strong>, and <strong>AI for Software Engineering (AI4SE)</strong>. Current medical AI work covers LLM fine-tuning, RAG, prompt engineering, and multi-modal learning.<br />研究方向位于深度学习与自然语言处理交叉领域，关注大语言模型、智能体与面向软件工程的 AI（AI4SE）；当前在医学人工智能中积累了 LLM 微调、RAG、提示工程与多模态学习经验。",
+      "🔭 Research interest lies at the intersection of <strong>Deep Learning</strong> and <strong>Natural Language Processing</strong>, with emphasis on <strong>Large Language Models (LLMs)</strong>, <strong>Intelligent Agents</strong>, and <strong>AI for Software Engineering (AI4SE)</strong> — especially how LLMs can be orchestrated into collaborative multi-agent systems that understand, generate, and debug code.<br />Current medical AI work builds foundations in LLM fine-tuning, retrieval-augmented generation (RAG), prompt engineering, and multi-modal learning, which I aim to extend toward reliable, scalable agents for software engineering.<br />研究方向位于深度学习与自然语言处理交叉领域，关注大语言模型、智能体与面向软件工程的 AI（AI4SE），以及多代理协作在代码理解 / 生成 / 调试中的潜力；医学 AI 实践覆盖 LLM 微调、RAG、提示工程与多模态学习。",
     services: "",
     communities: "",
     contact:
@@ -68,7 +68,7 @@ window.SITE = {
       place:
         "The Chinese University of Hong Kong, Shenzhen · Shenzhen Research Institute of Big Data (香港中文大学（深圳）· 深圳大数据研究院)",
       noteHtml:
-        '<span class="muted">Engaged in three medical AI projects (HCC immunotherapy response, renal tumor multi-phase CT enhancement, sepsis classification with LLMs); developed models with PyTorch for medical imaging, multi-modal fusion, and clinical NLP.</span>',
+        '<span class="muted">Engaged in three medical AI projects: HCC immunotherapy response prediction, renal tumor multi-phase CT enhancement, and sepsis classification with LLMs. Built PyTorch models for medical image analysis, multi-modal fusion, and clinical NLP.<br />参与三项医学人工智能研究：肝癌免疫治疗反应预测、肾脏肿瘤多期 CT 增强预测、基于大语言模型的脓毒症分类；使用 PyTorch 开展医学影像分析、多模态融合与临床 NLP。</span>',
     },
   ],
 
@@ -78,21 +78,21 @@ window.SITE = {
       title: "Hepatocellular Carcinoma Immunotherapy Response Prediction",
       place: "Medical Imaging · Multi-modal Learning",
       noteHtml:
-        '<span class="muted">Multi-modal deep learning pipeline for HCC immunotherapy response prediction using multi-phase contrast-enhanced CT and clinical features; 3D ResNet feature extractors and cross-modal fusion. <em>PyTorch, 3D CNN, Multi-modal Fusion, Attention</em></span>',
+        '<span class="muted">Multi-modal pipeline for HCC immunotherapy response using multi-phase contrast-enhanced CT and clinical features; 3D ResNet volumetric extractors with cross-modal fusion of imaging and tabular data.<br />多模态深度学习预测肝癌免疫治疗反应；3D ResNet 提取 CT 体数据特征，并融合影像与临床表格信息。<em>PyTorch, 3D CNN, Multi-modal Fusion, Attention</em></span>',
     },
     {
       time: "2026",
       title: "Multi-Phase Renal Tumor Enhancement Prediction",
       place: "Image-to-Image Translation",
       noteHtml:
-        '<span class="muted">Conditional generation of contrast-enhanced CT across phases for renal tumor characterization; U-Net + attention for non-contrast to contrast-enhanced synthesis. <em>PyTorch, GAN, U-Net, Attention</em></span>',
+        '<span class="muted">Conditional image generation across CT phases for renal tumor characterization; U-Net + attention for non-contrast → contrast-enhanced synthesis.<br />条件生成模型预测肾脏肿瘤不同期相增强 CT；U-Net 与注意力机制实现跨期相图像翻译。<em>PyTorch, GAN, U-Net, Attention</em></span>',
     },
     {
       time: "2026",
       title: "Sepsis Classification with Large Language Models",
       place: "Clinical NLP · LLM",
       noteHtml:
-        '<span class="muted">Fine-tuned LLMs for sepsis early detection/severity classification on EHR and clinical notes; RAG and prompt engineering for clinical decision support. <em>PyTorch, Transformers, LLM Fine-tuning, RAG, Prompt Engineering</em></span>',
+        '<span class="muted">Fine-tuned LLMs on EHR and clinical notes for sepsis early detection/severity classification; RAG and prompt engineering for clinical decision support, informing grounded LLM outputs with external knowledge.<br />基于 EHR 与临床文本微调 LLM 做脓毒症早筛与严重度分类；实践 RAG 与提示工程以增强临床决策支持。<em>PyTorch, Transformers, LLM Fine-tuning, RAG, Prompt Engineering</em></span>',
     },
   ],
 

@@ -222,6 +222,27 @@
         .join("") +
         (interestTags ? `<div class="interest-tags">${interestTags}</div>` : "")
     );
+    // #region agent log
+    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+      body: JSON.stringify({
+        sessionId: "9db655",
+        runId: "cv-enrich",
+        hypothesisId: "E",
+        location: "main.js:about-render",
+        message: "about/projects rendered",
+        data: {
+          focusLen: (about.focus || "").length,
+          hasAi4seAgents: /multi-agent|多代理/.test(about.focus || ""),
+          projectCount: (SITE.projects || []).length,
+          expHasZh: /参与三项/.test((SITE.experience || [])[0]?.noteHtml || ""),
+          avatar: (SITE.profile || {}).avatar,
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
