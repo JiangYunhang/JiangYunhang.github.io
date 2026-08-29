@@ -195,6 +195,24 @@
     );
 
     setHtml("#educationBody", timelineHtml(SITE.education || []));
+    // #region agent log
+    fetch("http://127.0.0.1:7674/ingest/0d3376c2-124e-44c3-999d-2d660cceb539", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "9db655" },
+      body: JSON.stringify({
+        sessionId: "9db655",
+        runId: "gpa-remove",
+        hypothesisId: "G1",
+        location: "main.js:education",
+        message: "education note GPA/rank check",
+        data: {
+          note: (SITE.education || [])[0]?.noteHtml || "",
+          hasGpa: /GPA|4\.2\/5|7\/161|Rank/i.test((SITE.education || [])[0]?.noteHtml || ""),
+        },
+        timestamp: Date.now(),
+      }),
+    }).catch(() => {});
+    // #endregion
     setHtml("#experienceBody", timelineHtml(SITE.experience || []));
     setHtml("#projectsBody", timelineHtml(SITE.projects || []));
     setHtml("#researchBody", timelineHtml(SITE.research || []));

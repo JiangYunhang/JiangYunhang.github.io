@@ -57,7 +57,7 @@ window.SITE = {
       title: "B.S. in Data Science and Big Data Technology",
       place: "Anhui University of Finance and Economics (安徽财经大学), Bengbu, Anhui, China",
       noteHtml:
-        '<span class="muted">GPA: <strong>4.2/5</strong> (Rank <strong>7/161</strong>) · Core: Machine Learning, Deep Learning, Data Structures &amp; Algorithms, Linear Algebra, Probability &amp; Statistics, Python, Database Systems</span>',
+        '<span class="muted">Core: Machine Learning, Deep Learning, Data Structures &amp; Algorithms, Linear Algebra, Probability &amp; Statistics, Python, Database Systems</span>',
     },
   ],
 
