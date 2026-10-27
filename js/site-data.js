@@ -31,7 +31,7 @@ window.SITE = {
 
   about: {
     intro:
-      '🌱 你好，我是<strong>姜运航（Jiang Yunhang）</strong>，<strong>数据科学与大数据技术</strong>专业本科生。<br />Hi, I’m <strong>Jiang Yunhang</strong>, an undergraduate in <strong>Data Science and Big Data Technology</strong> at <strong>Anhui University of Finance and Economics</strong>, Bengbu, China.',
+      '🌱 你好，我是<strong>姜运航（Jiang Yunhang）</strong>，<strong>数据科学与大数据技术</strong>专业本科生。<br />Hi, I’m <strong>Jiang Yunhang</strong>, an undergraduate in <strong>Data Science and Big Data Technology</strong>',
     focus:
       "🔭 Research interest lies at the intersection of <strong>Deep Learning</strong> and <strong>Natural Language Processing</strong>, with emphasis on <strong>Large Language Models (LLMs)</strong>, <strong>Intelligent Agents</strong>, and <strong>AI for Software Engineering (AI4SE)</strong> — especially how LLMs can be orchestrated into collaborative multi-agent systems that understand, generate, and debug code.<br />Current medical AI work builds foundations in LLM fine-tuning, retrieval-augmented generation (RAG), prompt engineering, and multi-modal learning, which I aim to extend toward reliable, scalable agents for software engineering.<br />研究方向位于深度学习与自然语言处理交叉领域，关注大语言模型、智能体与面向软件工程的 AI（AI4SE），以及多代理协作在代码理解 / 生成 / 调试中的潜力；医学 AI 实践覆盖 LLM 微调、RAG、提示工程与多模态学习。",
     services: "",
