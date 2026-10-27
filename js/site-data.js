@@ -150,7 +150,7 @@ window.SITE = {
     },
     {
       time: "2025.09",
-      text: "📖 Began B.S. in Data Science and Big Data Technology at Anhui University of Finance and Economics.",
+      text: "📖 Began B.S. in Data Science and Big Data Technology .",
     },
   ],
 
