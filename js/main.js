@@ -40,7 +40,6 @@
     };
     loadGithubRepos().finally(syncScrollHints);
     requestAnimationFrame(syncScrollHints);
-
     const sidebar=$("#sidebar"), toggle=$("#navToggle"), backdrop=$("#navBackdrop");
     const mobileMq=window.matchMedia("(max-width: 900px)");
     const setNavOpen=(open)=>{
