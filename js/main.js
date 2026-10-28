@@ -43,7 +43,7 @@
         return `<li>
         <span class="time">${esc(it.time)}</span>
         <div class="item-body">
-          <strong>${esc(it.title)}</strong>, ${esc(it.place)}
+          <strong>${esc(it.title)}</strong>${it.place ? `, ${esc(it.place)}` : ""}
           ${note}
         </div>
       </li>`;
@@ -96,6 +96,8 @@
     setHtml("#motto", (p.motto || []).map((line) => `<em>${esc(line)}</em>`).join("<br />"));
     setText("#role", p.role);
     setText("#location", p.location);
+    const locationLi = $("#location")?.closest?.("li");
+    if (locationLi) locationLi.hidden = !p.location;
 
     const mail = $("#email");
     const emailLi = mail?.closest("li");

@@ -54,7 +54,7 @@ window.SITE = {
     {
       time: "2025.09 – 2029.06",
       title: "B.S. in Data Science and Big Data Technology",
-      place: "The Chinese University of Hong Kong, Shenzhen · Shenzhen Research Institute of Big Data (香港中文大学（深圳）· 深圳大数据研究院)",
+      place: "",
       noteHtml:
         '<span class="muted">Core: Machine Learning, Deep Learning, Data Structures &amp; Algorithms, Linear Algebra, Probability &amp; Statistics, Python, Database Systems</span>',
     },
