@@ -15,11 +15,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="icon" href="assets/img/avatar.jpg" />
   <meta name="theme-color" content="#0b5f52" />
   <link rel="preload" href="assets/img/avatar.jpg" as="image" />
-  <link rel="stylesheet" href="css/style.css?v=final3" />
+  <script>
+    (function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#about">Skip to content</a>
@@ -42,6 +45,9 @@
       <div class="socials" id="socials"></div>
     </div>
     <nav class="nav" id="nav"></nav>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+      <i class="fa-solid fa-moon"></i> <span>Dark mode</span>
+    </button>
   </aside>
 
   <main class="content">
@@ -176,7 +182,7 @@
     </footer>
   </main>
 
-  <script src="js/site-data.js?v=final3"></script>
-  <script src="js/main.js?v=final3"></script>
+  <script src="js/site-data.js?v=upgrade1"></script>
+  <script src="js/main.js?v=upgrade1"></script>
 </body>
 </html>

@@ -78,6 +78,29 @@
       .join("")}</ul>`;
 
   try {
+    // Theme toggle
+    const themeToggle = $("#themeToggle");
+    const applyTheme = (theme) => {
+      document.documentElement.setAttribute("data-theme", theme);
+      try { localStorage.setItem("theme", theme); } catch (e) {}
+      if (themeToggle) {
+        const icon = themeToggle.querySelector("i");
+        const label = themeToggle.querySelector("span");
+        if (icon) icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        if (label) label.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+      }
+    };
+    const savedTheme = (() => { try { return localStorage.getItem("theme"); } catch (e) { return null; } })();
+    if (!savedTheme) {
+      const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      applyTheme(preferred);
+    } else {
+      applyTheme(savedTheme);
+    }
+    themeToggle?.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
     const p = SITE.profile || {};
     document.title = p.title || `${p.name} - Homepage`;
 
