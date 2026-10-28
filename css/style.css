@@ -98,8 +98,8 @@ img { max-width: 100%; display: block; }
   display: none;
   position: fixed; top: 14px; left: 14px; z-index: 40;
   width: 44px; height: 44px; border: 1px solid var(--line);
-  border-radius: 12px; background: var(--panel); color: var(--ink);
-  cursor: pointer; backdrop-filter: blur(10px); box-shadow: var(--shadow-soft);
+  border-radius: 12px; background: #fff; color: var(--ink);
+  cursor: pointer; box-shadow: var(--shadow-soft);
   align-items: center; justify-content: center;
 }
 
@@ -110,13 +110,11 @@ img { max-width: 100%; display: block; }
   padding-top: max(26px, env(safe-area-inset-top));
   padding-bottom: max(26px, env(safe-area-inset-bottom));
   padding-left: max(18px, env(safe-area-inset-left));
-  background: var(--panel);
+  background: #f8faf9;
   border-right: 1px solid var(--line);
-  backdrop-filter: blur(14px);
   overflow-x: hidden; overflow-y: auto;
   overscroll-behavior: contain; z-index: 30;
   -webkit-overflow-scrolling: touch;
-  transition: background var(--transition), border-color var(--transition);
 }
 
 .profile { text-align: center; margin-bottom: 20px; }
@@ -136,9 +134,7 @@ img { max-width: 100%; display: block; }
 .name {
   margin: 0; font-family: var(--font-display);
   font-size: var(--fs-name); font-weight: 400; letter-spacing: 0.01em;
-  overflow-wrap: anywhere;
-  background: linear-gradient(120deg, var(--ink), var(--accent));
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+  overflow-wrap: anywhere; color: var(--ink);
 }
 .name-cn { margin: 2px 0 10px; color: var(--muted); font-size: 0.92rem; overflow-wrap: anywhere; }
 
@@ -256,8 +252,8 @@ img { max-width: 100%; display: block; }
 .skills-list {
   list-style: none; padding: 0; margin: 0;
   border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--panel); box-shadow: var(--shadow-soft);
-  overflow: hidden; backdrop-filter: blur(8px);
+  background: #ffffff; box-shadow: var(--shadow-soft);
+  overflow: hidden;
 }
 .skills-list li {
   display: grid; grid-template-columns: minmax(96px, 140px) minmax(0, 1fr);
@@ -343,8 +339,8 @@ code {
 .music-card {
   grid-template-columns: 72px 1fr; padding: 14px;
   border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--panel); box-shadow: var(--shadow-soft);
-  border-bottom: 1px solid var(--line); backdrop-filter: blur(8px);
+  background: #ffffff; box-shadow: var(--shadow-soft);
+  border-bottom: 1px solid var(--line);
 }
 .music-card img { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; }
 .music-card h4 { margin: 0 0 4px; }
@@ -352,9 +348,8 @@ code {
 
 .quote {
   margin: 0 0 18px; padding: 14px 18px;
-  border-left: 3px solid var(--accent); background: var(--panel);
+  border-left: 3px solid var(--accent); background: #ffffff;
   color: var(--muted); border-radius: 0 var(--radius) var(--radius) 0;
-  backdrop-filter: blur(8px);
 }
 .quote footer { margin-top: 8px; font-size: 0.86rem; }
 
@@ -365,8 +360,8 @@ code {
 .repo-card {
   display: flex; flex-direction: column; gap: 8px; padding: 16px 18px;
   border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--panel); box-shadow: var(--shadow-soft);
-  color: inherit; text-decoration: none; backdrop-filter: blur(8px);
+  background: #ffffff; box-shadow: var(--shadow-soft);
+  color: inherit; text-decoration: none;
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 .repo-card:hover {
