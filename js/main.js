@@ -1,15 +1,3 @@
-    const syncScrollHints = () => {
-      $$(".scroll-panel").forEach((panel)=>{
-        const section=panel.closest(".section");
-        const hint=section?.querySelector(".scroll-hint");
-        if(!hint) return;
-        const needsScroll=panel.scrollHeight>panel.clientHeight+2;
-        hint.hidden=!needsScroll;
-        panel.classList.toggle("is-scrollable",needsScroll);
-      });
-    };
-    loadGithubRepos().finally(syncScrollHints);
-    requestAnimationFrame(syncScrollHints);
     const sidebar=$("#sidebar"), toggle=$("#navToggle"), backdrop=$("#navBackdrop");
     const mobileMq=window.matchMedia("(max-width: 900px)");
     const setNavOpen=(open)=>{
