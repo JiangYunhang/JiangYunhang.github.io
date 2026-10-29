@@ -32,13 +32,16 @@
 
     const about = SITE.about || {};
     const paras = (about.paragraphs || []).map(par => {
-      if (typeof par === "string") return `<p>${par}</p>`;
-      const zh = par.zh ? `<span class="lang-line">${par.zh}</span>` : "";
-      const en = par.en ? `<span class="lang-line lang-en">${par.en}</span>` : "";
-      return `<p>${zh}${en}</p>`;
+      if (typeof par === "string") {
+        return `<div class="about-item about-item--single"><p>${par}</p></div>`;
+      }
+      const zh = par.zh ? `<p class="lang-zh">${par.zh}</p>` : "";
+      const en = par.en ? `<p class="lang-en">${par.en}</p>` : "";
+      return `<div class="about-item">${zh}${en}</div>`;
     }).join("");
     const tags = tagsHtml(about.interests);
-    setHtml("#aboutBody", paras + (tags ? `<div class="interest-tags">${tags}</div>` : ""));
+    setHtml("#interests", tags);
+    setHtml("#aboutBody", paras);
 
     /* ---------- 教育 / 经历 ---------- */
     setHtml("#educationBody", timelineHtml(SITE.education || []));

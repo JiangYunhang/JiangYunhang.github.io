@@ -36,8 +36,8 @@
   --radius:      0.92rem;
   --radius-sm:   0.6rem;
   --sidebar-w:   clamp(14.5rem, 19vw, 18rem);
-  --content-max: 64rem;
-  --measure:     64ch;              /* 正文最佳阅读宽度 */
+  --content-max: 70rem;
+  --measure:     78ch;              /* 正文最佳阅读宽度 */
   --pad-x:       clamp(1.1rem, 2.6vw, 2.8rem);
   --pad-y:       clamp(1.5rem, 3vw, 3.4rem);
 

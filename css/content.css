@@ -67,14 +67,41 @@
 }
 
 /* ---- 正文 ---- */
-.prose p { margin: 0 0 0.95rem; max-width: var(--measure); text-wrap: pretty; }
+.prose p { margin: 0 0 0.85rem; text-wrap: pretty; }
 .prose p:last-child { margin-bottom: 0; }
-.prose p:first-child { font-size: var(--fs-lead); line-height: 1.68; }
-.prose .lang-line { display: block; }
-.prose .lang-line + .lang-line { margin-top: 0.18rem; }
-.prose .lang-en { color: var(--ink-soft); font-size: 0.97em; }
 
-/* ---- 兴趣标签 ---- */
+/* About：左文右栏双栏布局，右侧不再留大片空白 */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem);
+  gap: 0 2.4rem;
+  align-items: start;
+}
+.about-grid .prose { min-width: 0; max-width: 46em; }
+.about-item { margin-bottom: 0.95rem; }
+.about-item:last-child { margin-bottom: 0; }
+.about-item p { margin: 0 0 0.2rem; }
+.about-item .lang-zh { color: var(--ink); }
+.about-item .lang-en { color: var(--ink-soft); font-size: 0.95em; line-height: 1.62; }
+
+.about-aside {
+  position: sticky; top: 1.5rem;
+  display: flex; flex-direction: column; gap: 1.4rem;
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--panel-alt);
+}
+.aside-title {
+  margin: 0 0 0.7rem;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--faint);
+}
+.about-aside .interest-tags { margin-top: 0; }
+.about-aside .interest-tag { font-size: 0.73rem; padding: 0.26rem 0.66rem; }
+.about-aside .badges { margin-top: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
+.about-aside .badges img { height: 20px; }
+
+/* ---- 兴趣标签（独立板块时使用） ---- */
 .interest-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
 .interest-tag {
   display: inline-block; padding: 0.3rem 0.78rem; border-radius: 999px;

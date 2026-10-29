@@ -34,11 +34,11 @@
 <link rel="preload" href="assets/img/avatar.jpg" as="image" />
 
 <!-- 样式（分模块） -->
-<link rel="stylesheet" href="css/base.css?v=7.0" />
-<link rel="stylesheet" href="css/sidebar.css?v=7.0" />
-<link rel="stylesheet" href="css/content.css?v=7.0" />
-<link rel="stylesheet" href="css/components.css?v=7.0" />
-<link rel="stylesheet" href="css/responsive.css?v=7.0" />
+<link rel="stylesheet" href="css/base.css?v=7.1" />
+<link rel="stylesheet" href="css/sidebar.css?v=7.1" />
+<link rel="stylesheet" href="css/content.css?v=7.1" />
+<link rel="stylesheet" href="css/components.css?v=7.1" />
+<link rel="stylesheet" href="css/responsive.css?v=7.1" />
 
 <script>
   // 提前应用主题，避免刷新时闪白
@@ -91,8 +91,19 @@
 
   <section id="about" class="section" data-label="About Me">
     <h2 class="section-title"><span class="emoji">😉</span> About Me</h2>
-    <div class="prose" id="aboutBody"></div>
-    <div class="badges" id="badges"></div>
+    <div class="about-grid">
+      <div class="prose" id="aboutBody"></div>
+      <aside class="about-aside" aria-label="研究兴趣与统计">
+        <div class="aside-block">
+          <h3 class="aside-title">Research Interests</h3>
+          <div class="interest-tags" id="interests"></div>
+        </div>
+        <div class="aside-block">
+          <h3 class="aside-title">GitHub</h3>
+          <div class="badges" id="badges"></div>
+        </div>
+      </aside>
+    </div>
   </section>
 
   <section id="education" class="section" data-label="Education">
@@ -228,10 +239,10 @@
 </button>
 
 <!-- 脚本（按依赖顺序） -->
-<script src="js/site-data.js?v=7.0"></script>
-<script src="js/helpers.js?v=7.0"></script>
-<script src="js/main.js?v=7.0"></script>
-<script src="js/render.js?v=7.0"></script>
-<script src="js/interaction.js?v=7.0"></script>
+<script src="js/site-data.js?v=7.1"></script>
+<script src="js/helpers.js?v=7.1"></script>
+<script src="js/main.js?v=7.1"></script>
+<script src="js/render.js?v=7.1"></script>
+<script src="js/interaction.js?v=7.1"></script>
 </body>
 </html>
