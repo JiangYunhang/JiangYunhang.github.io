@@ -1,15 +1,15 @@
 /* ============================================================
-   main.js — 主题、个人信息、导航与交互
+   main.js — 主题切换 / 个人信息 / 导航
    ============================================================ */
 (() => {
   const SITE = window.SITE;
   const H = window.H;
   if (!SITE || !H) return;
 
-  const { $, $$, esc, setText, setHtml } = H;
+  const { $, esc, setText, setHtml } = H;
 
   try {
-    /* ---------- 主题切换 ---------- */
+    /* ---------- 主题 ---------- */
     const themeToggle = $("#themeToggle");
     const applyTheme = (theme) => {
       document.documentElement.setAttribute("data-theme", theme);
@@ -19,8 +19,13 @@
         const label = themeToggle.querySelector("span");
         if (icon) icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
         if (label) label.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+        themeToggle.setAttribute("aria-label",
+          theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
       }
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = theme === "dark" ? "#0a111d" : "#0d7a6b";
     };
+
     let saved = null;
     try { saved = localStorage.getItem("theme"); } catch (e) {}
     applyTheme(saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
@@ -64,6 +69,8 @@
     if (mail && emailOk) {
       mail.href = `mailto:${p.email}`;
       mail.textContent = p.email;
+      mail.title = "点击复制邮箱地址";
+      mail.dataset.copy = p.email;
       if (emailLi) emailLi.hidden = false;
     } else if (emailLi) {
       emailLi.hidden = true;
@@ -74,16 +81,20 @@
       .map(s => `<a href="${esc(s.href)}" title="${esc(s.label)}" aria-label="${esc(s.label)}" target="_blank" rel="noopener noreferrer"><i class="${esc(s.icon)}"></i></a>`)
       .join(""));
 
-    /* ---------- 侧边导航 ---------- */
-    const seen = new Set();
-    const navItems = (SITE.nav || []).filter(n => {
-      if (seen.has(n.id)) return false;
-      seen.add(n.id);
-      return true;
-    });
-    setHtml("#nav", navItems.map((n, i) =>
-      `<a href="#${n.hash || n.id}" class="nav-link${i === 0 ? " active" : ""}">${esc(n.label)}</a>`
-    ).join(""));
+    /* ---------- 导航 ---------- */
+    const navHost = $("#nav");
+    if (navHost) {
+      // 若 site-data.js 未配置 nav，则按 index.html 中板块顺序自动生成
+      let navItems = (SITE.nav || []).filter(n => n && n.id);
+      if (!navItems.length) {
+        navItems = [...document.querySelectorAll("main .section[id]")]
+          .map(sec => ({ id: sec.id, label: sec.dataset.label || sec.id }));
+      }
+      setHtml("#nav", navItems.map((n, i) =>
+        `<a href="#${n.id}" class="nav-link${i === 0 ? " active" : ""}">${esc(n.label)}</a>`
+      ).join(""));
+    }
+
   } catch (err) {
     console.error(err);
   }

@@ -5,29 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Jiang Yunhang (姜运航) - Homepage</title>
 <meta name="description" content="Jiang Yunhang (姜运航) — B.S. student in Data Science & Big Data Technology. Research: LLMs, Intelligent Agents, AI4SE, Medical AI." />
-<meta property="og:title" content="Jiang Yunhang (姜运航) - Homepage" />
-<meta property="og:description" content="Personal academic homepage of Jiang Yunhang (姜运航). Email: 2069329624@qq.com" />
+<meta name="author" content="Jiang Yunhang" />
+<meta name="keywords" content="Jiang Yunhang,姜运航,LLM,Intelligent Agents,AI4SE,Medical AI,Deep Learning" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph / 社交分享 -->
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:site_name" content="Jiang Yunhang" />
+<meta property="og:title" content="Jiang Yunhang (姜运航) - Homepage" />
+<meta property="og:description" content="Personal academic homepage of Jiang Yunhang (姜运航). Research: LLMs, Intelligent Agents, AI4SE, Medical AI." />
 <meta property="og:url" content="https://JiangYunhang.github.io/" />
 <meta property="og:image" content="https://JiangYunhang.github.io/assets/img/avatar.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Jiang Yunhang (姜运航) - Homepage" />
+<meta name="twitter:description" content="Personal academic homepage of Jiang Yunhang (姜运航)." />
+<meta name="twitter:image" content="https://JiangYunhang.github.io/assets/img/avatar.jpg" />
 <link rel="canonical" href="https://JiangYunhang.github.io/" />
+
+<!-- 字体与图标 -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 <link rel="icon" href="assets/img/avatar.jpg" />
+<link rel="apple-touch-icon" href="assets/img/avatar.jpg" />
 <meta name="theme-color" content="#0d7a6b" />
 <link rel="preload" href="assets/img/avatar.jpg" as="image" />
 
-<!-- Styles -->
-<link rel="stylesheet" href="css/base.css?v=5.0" />
-<link rel="stylesheet" href="css/sidebar.css?v=5.0" />
-<link rel="stylesheet" href="css/content.css?v=5.0" />
-<link rel="stylesheet" href="css/components.css?v=5.0" />
-<link rel="stylesheet" href="css/responsive.css?v=5.0" />
+<!-- 样式（分模块） -->
+<link rel="stylesheet" href="css/base.css?v=6.0" />
+<link rel="stylesheet" href="css/sidebar.css?v=6.0" />
+<link rel="stylesheet" href="css/content.css?v=6.0" />
+<link rel="stylesheet" href="css/components.css?v=6.0" />
+<link rel="stylesheet" href="css/responsive.css?v=6.0" />
 
 <script>
+  // 提前应用主题，避免刷新时闪白
   (function () {
     try {
       var t = localStorage.getItem('theme');
@@ -38,16 +52,22 @@
 </script>
 </head>
 <body>
+
 <a class="skip-link" href="#about">Skip to content</a>
 
-<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">
+<!-- 阅读进度条 -->
+<div class="progress-bar" id="progressBar" role="progressbar" aria-hidden="true"></div>
+
+<!-- 移动端导航按钮 -->
+<button class="nav-toggle" id="navToggle" aria-label="打开导航菜单" aria-controls="sidebar" aria-expanded="false">
   <i class="fa-solid fa-bars"></i>
 </button>
-<button class="nav-backdrop" id="navBackdrop" type="button" aria-label="Close navigation" hidden></button>
+<button class="nav-backdrop" id="navBackdrop" type="button" aria-label="关闭导航菜单" hidden></button>
 
+<!-- 左侧边栏 -->
 <aside class="sidebar" id="sidebar">
   <div class="profile">
-    <img class="avatar" id="avatar" src="assets/img/avatar.jpg" alt="Jiang Yunhang" />
+    <img class="avatar" id="avatar" src="assets/img/avatar.jpg" alt="Jiang Yunhang" width="126" height="126" />
     <h1 class="name" id="name">Jiang Yunhang</h1>
     <p class="name-cn" id="nameCn">姜运航</p>
     <p class="motto" id="motto"><em>Canvas Unfolding Heavenly Kaleidoscope.</em></p>
@@ -58,45 +78,49 @@
     </ul>
     <div class="socials" id="socials"></div>
   </div>
-  <nav class="nav" id="nav" aria-label="Main navigation"></nav>
-  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+
+  <nav class="nav" id="nav" aria-label="主导航"></nav>
+
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色/浅色主题">
     <i class="fa-solid fa-moon"></i> <span>Dark mode</span>
   </button>
 </aside>
 
+<!-- 主内容 -->
 <main class="content">
-  <section id="about" class="section">
+
+  <section id="about" class="section" data-label="About Me">
     <h2 class="section-title"><span class="emoji">😉</span> About Me</h2>
     <div class="prose" id="aboutBody"></div>
     <div class="badges" id="badges"></div>
   </section>
 
-  <section id="education" class="section">
+  <section id="education" class="section" data-label="Education">
     <h2 class="section-title"><span class="emoji">📖</span> Education</h2>
     <div id="educationBody"></div>
   </section>
 
-  <section id="experience" class="section">
+  <section id="experience" class="section" data-label="Experience">
     <h2 class="section-title"><span class="emoji">💻</span> Experience</h2>
     <div id="experienceBody"></div>
   </section>
 
-  <section id="projects" class="section">
+  <section id="projects" class="section" data-label="Projects">
     <h2 class="section-title"><span class="emoji">🧪</span> Projects</h2>
     <div id="projectsBody"></div>
   </section>
 
-  <section id="skills" class="section">
+  <section id="skills" class="section" data-label="Skills">
     <h2 class="section-title"><span class="emoji">🛠️</span> Skills</h2>
     <div id="skillsBody"></div>
   </section>
 
-  <section id="research" class="section" hidden>
+  <section id="research" class="section" data-label="Research" hidden>
     <h2 class="section-title"><span class="emoji">🔬</span> Research</h2>
     <div id="researchBody"></div>
   </section>
 
-  <section id="repos" class="section">
+  <section id="repos" class="section" data-label="GitHub">
     <h2 class="section-title"><span class="emoji">🐙</span> GitHub Repositories</h2>
     <p class="note" id="reposMeta"></p>
     <div class="repo-grid" id="reposBody">
@@ -105,82 +129,88 @@
     <p class="repo-more" id="reposMore"></p>
   </section>
 
-  <section id="news" class="section">
+  <section id="news" class="section" data-label="News">
     <h2 class="section-title"><span class="emoji">🔥</span> News</h2>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="News 列表">
       <div id="newsBody"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="honors" class="section" hidden>
+  <section id="honors" class="section" data-label="Honors" hidden>
     <h2 class="section-title"><span class="emoji">🏅</span> Honors</h2>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="荣誉列表">
       <div id="honorsBody"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="funding" class="section" hidden>
+  <section id="funding" class="section" data-label="Funding" hidden>
     <h2 class="section-title"><span class="emoji">💰</span> Funding</h2>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="资助列表">
       <div id="fundingBody"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="publications" class="section" hidden>
+  <section id="publications" class="section" data-label="Publications" hidden>
     <h2 class="section-title"><span class="emoji">💡</span> Publications</h2>
     <p class="note" id="pubNote"></p>
+
     <h3 class="subhead">Conference Papers</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="会议论文">
       <div id="confPubs"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
+
     <h3 class="subhead">Journal Papers</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="期刊论文">
       <div id="journalPubs"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="patents" class="section" hidden>
+  <section id="patents" class="section" data-label="Patents" hidden>
     <h2 class="section-title"><span class="emoji">🔬</span> Patents</h2>
+
     <h3 class="subhead">CN Invention Patents</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="发明专利">
       <div id="inventionPatents"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
+
     <h3 class="subhead">CN Design Patents</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="外观设计专利">
       <div id="designPatents"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="software" class="section" hidden>
+  <section id="software" class="section" data-label="Software" hidden>
     <h2 class="section-title"><span class="emoji">📱</span> Software</h2>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="软件与系统">
       <div id="softwareBody"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="competitions" class="section" hidden>
+  <section id="competitions" class="section" data-label="Competitions" hidden>
     <h2 class="section-title"><span class="emoji">🏇</span> Competitions</h2>
+
     <h3 class="subhead">International &amp; National Prizes</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="国际与全国奖项">
       <div id="nationalPrizes"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
+
     <h3 class="subhead">Regional &amp; Provincial Prizes</h3>
-    <div class="scroll-panel" tabindex="0">
+    <div class="scroll-panel" tabindex="0" role="region" aria-label="区域与省级奖项">
       <div id="regionalPrizes"></div>
     </div>
-    <p class="scroll-hint">⬆ Scrollable</p>
+    <p class="scroll-hint" hidden>⬆ Scrollable</p>
   </section>
 
-  <section id="music" class="section" hidden>
+  <section id="music" class="section" data-label="Music" hidden>
     <h2 class="section-title"><span class="emoji">🎼</span> My Favorite Music</h2>
     <blockquote class="quote" id="musicQuote"></blockquote>
     <div class="music-grid" id="musicGrid"></div>
@@ -192,10 +222,16 @@
   </footer>
 </main>
 
-<script src="js/site-data.js?v=5.1"></script>
-<script src="js/helpers.js?v=5.0"></script>
-<script src="js/main.js?v=5.0"></script>
-<script src="js/render.js?v=5.0"></script>
-<script src="js/interaction.js?v=5.0"></script>
+<!-- 返回顶部 -->
+<button class="to-top" id="toTop" type="button" aria-label="返回顶部">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- 脚本（按依赖顺序） -->
+<script src="js/site-data.js?v=6.0"></script>
+<script src="js/helpers.js?v=6.0"></script>
+<script src="js/main.js?v=6.0"></script>
+<script src="js/render.js?v=6.0"></script>
+<script src="js/interaction.js?v=6.0"></script>
 </body>
 </html>

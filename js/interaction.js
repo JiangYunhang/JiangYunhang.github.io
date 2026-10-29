@@ -1,5 +1,5 @@
 /* ============================================================
-   interaction.js — 移动端导航、GitHub 仓库、滚动高亮
+   interaction.js — 导航 / 仓库 / 滚动交互
    ============================================================ */
 (() => {
   const SITE = window.SITE;
@@ -12,7 +12,7 @@
     const p = SITE.profile || {};
     const user = p.githubUser || "JiangYunhang";
 
-    /* ---------- 移动端抽屉导航 ---------- */
+    /* ================= 移动端抽屉导航 ================= */
     const sidebar = $("#sidebar");
     const toggle = $("#navToggle");
     const backdrop = $("#navBackdrop");
@@ -37,7 +37,23 @@
     if (mobileMq.addEventListener) mobileMq.addEventListener("change", onMq);
     else mobileMq.addListener(onMq);
 
-    /* ---------- GitHub 仓库列表 ---------- */
+    /* ================= 阅读进度条 ================= */
+    const progressBar = $("#progressBar");
+    const toTop = $("#toTop");
+
+    const updateScrollUI = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      const pct = scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0;
+      if (progressBar) progressBar.style.width = pct.toFixed(2) + "%";
+      if (toTop) toTop.classList.toggle("is-visible", window.scrollY > 420);
+    };
+
+    toTop?.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    /* ================= GitHub 仓库列表 ================= */
     const loadGithubRepos = async () => {
       const body = $("#reposBody");
       const meta = $("#reposMeta");
@@ -89,7 +105,7 @@
       }
     };
 
-    /* ---------- 滚动区域提示 ---------- */
+    /* ================= 滚动面板提示 ================= */
     const syncScrollHints = () => {
       $$(".scroll-panel").forEach(panel => {
         const section = panel.closest(".section");
@@ -101,13 +117,20 @@
       });
     };
 
-    /* ---------- 导航高亮 ---------- */
+    /* ================= 导航高亮 ================= */
+    // 隐藏指向空板块的导航项（数据为空时板块会被隐藏）
+    $$(".nav-link").forEach(l => {
+      const target = $(l.getAttribute("href"));
+      const section = target?.closest(".section");
+      if (section?.hidden) l.remove();
+    });
     const links = $$(".nav-link");
     const sections = [...new Set(links.map(l => $(l.getAttribute("href"))))].filter(Boolean);
     links.forEach(link => link.addEventListener("click", () => setNavOpen(false)));
 
+    let ticking = false;
     const setActive = () => {
-      const offset = mobileMq.matches ? 88 : 120;
+      const offset = mobileMq.matches ? 96 : 130;
       let currentId = sections[0]?.id;
       for (const section of sections) {
         if (section.getBoundingClientRect().top - offset <= 0) currentId = section.id;
@@ -117,12 +140,40 @@
       });
     };
 
-    window.addEventListener("scroll", setActive, { passive: true });
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setActive();
+        updateScrollUI();
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", () => { syncScrollHints(); setActive(); }, { passive: true });
 
+    /* ================= 邮箱一键复制 ================= */
+    const mailLink = $("#email");
+    mailLink?.addEventListener("click", (e) => {
+      const addr = mailLink.dataset.copy;
+      if (!addr) return;
+      // 先让邮件客户端正常打开，同时尝试复制
+      e.preventDefault();
+      const done = () => {
+        mailLink.style.color = "var(--accent)";
+        setTimeout(() => { mailLink.style.color = ""; }, 1200);
+      };
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(addr).then(done).catch(() => { window.location.href = `mailto:${addr}`; });
+      } else {
+        window.location.href = `mailto:${addr}`;
+      }
+    });
+
+    /* ================= 启动 ================= */
     loadGithubRepos().finally(syncScrollHints);
-    requestAnimationFrame(syncScrollHints);
-    setActive();
+    requestAnimationFrame(() => { syncScrollHints(); setActive(); updateScrollUI(); });
   } catch (err) {
     console.error(err);
   }
