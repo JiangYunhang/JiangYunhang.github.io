@@ -84,6 +84,9 @@ html[data-theme="dark"] {
 /* ---- 基础重置 ---- */
 *,*::before,*::after { box-sizing: border-box; }
 
+/* hidden 属性必须优先生效（否则会被组件的 display 规则覆盖） */
+[hidden] { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;

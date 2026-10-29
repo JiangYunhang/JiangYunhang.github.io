@@ -18,11 +18,27 @@ window.H = (() => {
   const setText = (sel, v) => { const el = $(sel); if (el) el.textContent = v ?? ""; };
   const setHtml = (sel, v) => { const el = $(sel); if (el) el.innerHTML = v ?? ""; };
 
-  /** 把 "a, b, c" 这样的字符串拆成标签数组 */
+  /**
+   * 把 "a, b, c" 这样的字符串拆成标签数组。
+   * 括号内的逗号不会被拆分，例如 "English (fluent, CET-4)" 保持为一个标签。
+   */
   const splitTags = (v) => {
     if (!v) return [];
     if (Array.isArray(v)) return v.filter(Boolean);
-    return String(v).split(/[,，;；|]/).map(s => s.trim()).filter(Boolean);
+    const out = [];
+    let buf = "", depth = 0;
+    for (const ch of String(v)) {
+      if (ch === "(" || ch === "[" || ch === "（" || ch === "【") depth++;
+      else if (ch === ")" || ch === "]" || ch === "）" || ch === "】") depth = Math.max(0, depth - 1);
+      if (depth === 0 && /[,，;；|]/.test(ch)) {
+        if (buf.trim()) out.push(buf.trim());
+        buf = "";
+      } else {
+        buf += ch;
+      }
+    }
+    if (buf.trim()) out.push(buf.trim());
+    return out;
   };
 
   /** 渲染一组标签 */
@@ -44,7 +60,7 @@ window.H = (() => {
      时间线：教育 / 经历（带 org、tags、desc、links）
      ------------------------------------------------------------ */
   const timelineHtml = (items = []) => {
-    if (!items.length) return `<p class="empty-state">暂无内容</p>`;
+    if (!items.length) return "";
     return `<ul class="timeline">${items.map(it => {
       const org = it.org
         ? `<div class="item-org">${it.org}${it.place ? `<span class="sep">·</span>${esc(it.place)}` : ""}</div>`
@@ -67,7 +83,7 @@ window.H = (() => {
      项目卡片
      ------------------------------------------------------------ */
   const projectCardsHtml = (items = []) => {
-    if (!items.length) return `<p class="empty-state">暂无内容</p>`;
+    if (!items.length) return "";
     return `<div class="card-grid">${items.map(it => {
       const tags = it.tags?.length ? tagsHtml(it.tags) : "";
       const links = it.links?.length
@@ -88,7 +104,7 @@ window.H = (() => {
      紧凑列表：新闻 / 荣誉 / 资助 / 竞赛 / 专利
      ------------------------------------------------------------ */
   const feedHtml = (items = []) => {
-    if (!items.length) return `<p class="empty-state">暂无内容</p>`;
+    if (!items.length) return "";
     return `<ul class="feed">${items.map(it => `
       <li>
         <span class="time">${esc(it.date ?? it.time ?? "")}</span>
