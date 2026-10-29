@@ -45,12 +45,15 @@ _final_*.js
 _final_*.css
 _upload_to_github/
 JiangYunhang.github.io-publish.zip
-*.png
+
+# ---- 根目录零散文件（assets/ 下的图片正常提交）----
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
 
 # ---- 本地临时文件 ----
 *.log
 *.tmp
 *.bak
-
-# ---- 根目录零散文件（避免误提交）----
-/5fe1a26347ebbc9425f076e3d6c977f5.jpg

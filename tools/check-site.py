@@ -184,6 +184,37 @@ def main():
         errors.append(f"[检查失败] {e}")
     print()
 
+    # ---- 4.5 HTML hidden 标记 与 数据状态 是否一致 ----
+    print("[4.5/5] 检查板块显隐标记与数据是否一致 …")
+    # 板块 id → 数据字段的映射
+    mapping = {
+        'research': 'research',
+        'honors': 'honors',
+        'funding': 'funding',
+        'competitions': 'competitions',
+        'patents': 'patents',
+        'software': 'software',
+        'music': 'music',
+    }
+    hidden_in_html = set(re.findall(r'<section id="([a-zA-Z0-9_-]+)"[^>]*\bhidden\b', html))
+    for sid, field in mapping.items():
+        m = re.search(rf'^\s*{field}:\s*(.*?)$', data_src, re.M)
+        if not m:
+            continue
+        seg = m.group(1)
+        # 该字段下所有数组都为空 → 板块应隐藏
+        arrays = re.findall(r'\[([^\[\]]*)\]', seg)
+        is_empty = all(a.strip() == '' for a in arrays) if arrays else False
+        should_hide = is_empty
+        if should_hide and sid not in hidden_in_html:
+            warnings.append(f"[提示] 板块 '{sid}' 数据为空，但 HTML 里没有 hidden —— "
+                            f"首次渲染前会闪现空板块")
+        if not should_hide and sid in hidden_in_html:
+            errors.append(f"[显隐冲突] 板块 '{sid}' 数据非空，但 HTML 里带 hidden —— "
+                          f"内容永远不显示！请删掉 index.html 中的 hidden 属性")
+    infos.append(f"✓ 显隐标记核对完成（{len(hidden_in_html)} 个板块标记为 hidden）")
+    print()
+
     # ---- 5. 图片资源 ----
     print("[5/5] 检查图片资源 …")
     img_dir = os.path.join(ROOT, 'assets', 'img')
