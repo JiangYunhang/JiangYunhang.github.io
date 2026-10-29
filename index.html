@@ -19,11 +19,28 @@
 <link rel="icon" href="assets/img/avatar.jpg" />
 <meta name="theme-color" content="#0d7a6b" />
 <link rel="preload" href="assets/img/avatar.jpg" as="image" />
-<link rel="stylesheet" href="css/style.css?v=3.0" />
+
+<!-- Styles -->
+<link rel="stylesheet" href="css/base.css?v=5.0" />
+<link rel="stylesheet" href="css/sidebar.css?v=5.0" />
+<link rel="stylesheet" href="css/content.css?v=5.0" />
+<link rel="stylesheet" href="css/components.css?v=5.0" />
+<link rel="stylesheet" href="css/responsive.css?v=5.0" />
+
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 <a class="skip-link" href="#about">Skip to content</a>
-<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+
+<button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-controls="sidebar" aria-expanded="false">
   <i class="fa-solid fa-bars"></i>
 </button>
 <button class="nav-backdrop" id="navBackdrop" type="button" aria-label="Close navigation" hidden></button>
@@ -35,13 +52,13 @@
     <p class="name-cn" id="nameCn">姜运航</p>
     <p class="motto" id="motto"><em>Canvas Unfolding Heavenly Kaleidoscope.</em></p>
     <ul class="profile-meta">
-      <li><i class="fa-solid fa-graduation-cap"></i> <span id="role">B.S. Student · Data Science & Big Data Technology</span></li>
+      <li><i class="fa-solid fa-graduation-cap"></i> <span id="role">B.S. Student · Data Science &amp; Big Data Technology</span></li>
       <li><i class="fa-solid fa-location-dot"></i> <span id="location">Bengbu, Anhui, China</span></li>
       <li><i class="fa-solid fa-envelope"></i> <a id="email" href="mailto:2069329624@qq.com">2069329624@qq.com</a></li>
     </ul>
     <div class="socials" id="socials"></div>
   </div>
-  <nav class="nav" id="nav"></nav>
+  <nav class="nav" id="nav" aria-label="Main navigation"></nav>
   <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
     <i class="fa-solid fa-moon"></i> <span>Dark mode</span>
   </button>
@@ -151,12 +168,12 @@
 
   <section id="competitions" class="section" hidden>
     <h2 class="section-title"><span class="emoji">🏇</span> Competitions</h2>
-    <h3 class="subhead">International & National Prizes</h3>
+    <h3 class="subhead">International &amp; National Prizes</h3>
     <div class="scroll-panel" tabindex="0">
       <div id="nationalPrizes"></div>
     </div>
     <p class="scroll-hint">⬆ Scrollable</p>
-    <h3 class="subhead">Regional & Provincial Prizes</h3>
+    <h3 class="subhead">Regional &amp; Provincial Prizes</h3>
     <div class="scroll-panel" tabindex="0">
       <div id="regionalPrizes"></div>
     </div>
@@ -175,7 +192,10 @@
   </footer>
 </main>
 
-<script src="js/site-data.js?v=3.0"></script>
-<script src="js/main.js?v=3.0"></script>
+<script src="js/site-data.js?v=5.0"></script>
+<script src="js/helpers.js?v=5.0"></script>
+<script src="js/main.js?v=5.0"></script>
+<script src="js/render.js?v=5.0"></script>
+<script src="js/interaction.js?v=5.0"></script>
 </body>
 </html>

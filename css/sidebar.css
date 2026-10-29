@@ -1,0 +1,75 @@
+/* ============================================================
+   sidebar.css — 左侧侧边栏
+   ============================================================ */
+.nav-toggle {
+  display: none; position: fixed; top: 14px; left: 14px; z-index: 40;
+  width: 44px; height: 44px; border: 1px solid var(--line);
+  border-radius: 12px; background: #fff; color: var(--ink);
+  cursor: pointer; box-shadow: var(--shadow-soft);
+  align-items: center; justify-content: center;
+}
+.sidebar {
+  position: fixed; inset: 0 auto 0 0; width: var(--sidebar-w);
+  padding: 26px 18px;
+  padding-top: max(26px, env(safe-area-inset-top));
+  padding-bottom: max(26px, env(safe-area-inset-bottom));
+  padding-left: max(18px, env(safe-area-inset-left));
+  background: #f8faf9; border-right: 1px solid var(--line);
+  overflow-x: hidden; overflow-y: auto;
+  overscroll-behavior: contain; z-index: 30;
+  -webkit-overflow-scrolling: touch;
+}
+.profile { text-align: center; margin-bottom: 20px; }
+.avatar {
+  width: clamp(92px,20vw,124px); height: clamp(92px,20vw,124px);
+  margin: 0 auto 14px; border-radius: 50%;
+  object-fit: cover; object-position: 50% 38%;
+  border: 3px solid var(--panel-solid);
+  box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.avatar:hover { transform: scale(1.04) rotate(-2deg); box-shadow: 0 0 0 3px var(--accent-glow), var(--shadow); }
+.name {
+  margin: 0; font-family: var(--font-display); font-size: var(--fs-name);
+  font-weight: 400; letter-spacing: 0.01em; overflow-wrap: anywhere; color: var(--ink);
+}
+.name-cn { margin: 2px 0 10px; color: var(--muted); font-size: 0.92rem; overflow-wrap: anywhere; }
+.motto {
+  margin: 0 0 14px; color: var(--muted); font-size: 0.88rem; line-height: 1.45;
+  overflow-wrap: anywhere; hyphens: auto; font-style: italic;
+}
+.profile-meta { list-style: none; padding: 0; margin: 0 0 14px; text-align: left; font-size: 0.86rem; }
+.profile-meta li { display: flex; gap: 9px; align-items: flex-start; margin-bottom: 8px; color: var(--muted); overflow-wrap: anywhere; }
+.profile-meta a, .profile-meta span { min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
+.profile-meta i { width: 16px; margin-top: 4px; color: var(--accent); }
+.profile-meta li[hidden] { display: none !important; }
+.profile-meta li.is-placeholder { opacity: 0.5; }
+.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.socials a {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border-radius: 50%; color: var(--ink); background: var(--accent-soft);
+  transition: transform var(--transition), background var(--transition), color var(--transition);
+}
+.socials a:hover { transform: translateY(-3px); background: var(--accent); color: #fff; text-decoration: none; }
+.nav {
+  display: flex; flex-direction: column; gap: 4px;
+  padding-top: 10px; border-top: 1px solid var(--line); margin-top: 6px;
+}
+.nav-link {
+  padding: 9px 12px; border-radius: 10px; color: var(--muted); font-size: 0.92rem;
+  transition: background var(--transition), color var(--transition); position: relative;
+}
+.nav-link:hover, .nav-link.active { background: var(--accent-soft); color: var(--accent); text-decoration: none; font-weight: 600; }
+.nav-link.active::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 60%; border-radius: 2px; background: var(--accent);
+}
+.theme-toggle {
+  margin-top: 14px; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 9px 12px; border-radius: 10px;
+  border: 1px solid var(--line); background: transparent; color: var(--muted);
+  cursor: pointer; font-size: 0.88rem;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.theme-toggle:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
