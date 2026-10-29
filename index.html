@@ -33,12 +33,13 @@
 <meta name="theme-color" content="#0d7a6b" />
 <link rel="preload" href="assets/img/avatar.jpg" as="image" />
 
-<!-- 样式（分模块） -->
-<link rel="stylesheet" href="css/base.css?v=7.1" />
-<link rel="stylesheet" href="css/sidebar.css?v=7.1" />
-<link rel="stylesheet" href="css/content.css?v=7.1" />
-<link rel="stylesheet" href="css/components.css?v=7.1" />
-<link rel="stylesheet" href="css/responsive.css?v=7.1" />
+<!-- 样式（按编号顺序加载，01 变量 → 06 响应式） -->
+<link rel="stylesheet" href="css/01-tokens.css?v=8.0" />
+<link rel="stylesheet" href="css/02-base.css?v=8.0" />
+<link rel="stylesheet" href="css/03-sidebar.css?v=8.0" />
+<link rel="stylesheet" href="css/04-content.css?v=8.0" />
+<link rel="stylesheet" href="css/05-components.css?v=8.0" />
+<link rel="stylesheet" href="css/06-responsive.css?v=8.0" />
 
 <script>
   // 提前应用主题，避免刷新时闪白
@@ -73,7 +74,7 @@
     <p class="motto" id="motto"><em>Canvas Unfolding Heavenly Kaleidoscope.</em></p>
     <ul class="profile-meta">
       <li><i class="fa-solid fa-graduation-cap"></i> <span id="role">B.S. Student · Data Science &amp; Big Data Technology</span></li>
-      <li><i class="fa-solid fa-location-dot"></i> <span id="location">Bengbu, Anhui, China</span></li>
+      <li><i class="fa-solid fa-location-dot"></i> <span id="location">Shenzhen, Guangdong, China</span></li>
       <li><i class="fa-solid fa-envelope"></i> <a id="email" href="mailto:2069329624@qq.com">2069329624@qq.com</a></li>
     </ul>
     <div class="socials" id="socials"></div>
@@ -238,11 +239,11 @@
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<!-- 脚本（按依赖顺序） -->
-<script src="js/site-data.js?v=7.1"></script>
-<script src="js/helpers.js?v=7.1"></script>
-<script src="js/main.js?v=7.1"></script>
-<script src="js/render.js?v=7.1"></script>
-<script src="js/interaction.js?v=7.1"></script>
+<!-- 脚本（按编号顺序加载） -->
+<script src="js/01-site-data.js?v=8.0"></script>
+<script src="js/02-helpers.js?v=8.0"></script>
+<script src="js/03-main.js?v=8.0"></script>
+<script src="js/04-render.js?v=8.0"></script>
+<script src="js/05-interaction.js?v=8.0"></script>
 </body>
 </html>

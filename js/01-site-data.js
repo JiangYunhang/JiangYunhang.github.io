@@ -1,19 +1,23 @@
 /**
  * ============================================================================
- *  个人主页数据文件 —— 你只需要修改这一个文件
+ *  01-site-data.js — 个人主页数据文件
  * ============================================================================
+ *
+ *  ★★★ 你只需要修改这一个文件 ★★★
  *
  *  📌  如何修改：
  *  1. 直接在 GitHub 上点击本文件右上角 ✏️ 铅笔图标编辑
  *  2. 改好后点击 "Commit changes" 提交
  *  3. 等待 1-2 分钟，网页 https://jiangyunhang.github.io/ 自动更新
  *
- *  📖  完整字段说明请看仓库根目录的 EDITING.md
+ *  📖  完整字段说明请看：
+ *      · 仓库根目录的 EDITING.md （快速上手）
+ *      · docs/DATA-FIELDS.md       （每个字段的详细说明）
  *
  *  💡  小技巧：
  *     · 数组里每一项用 { } 包裹，项与项之间用英文逗号 , 分隔
- *     · 不要删除最后一个逗号后面的换行，也不要删掉结尾的 }; 括号
- *     · 想暂时隐藏某个板块？把对应的数组改成 [] 即可
+ *     · 不要删除最后的 }; 括号
+ *     · 想暂时隐藏某个板块？把对应的数组改成 [] 即可（板块与导航会自动隐藏）
  *     · 想调整板块顺序？调整 index.html 里 <section> 标签的先后顺序
  * ============================================================================
  */
@@ -29,7 +33,7 @@ window.SITE = {
     title:     "Jiang Yunhang (姜运航) - Homepage", // 浏览器标签标题
     motto:     ["Canvas Unfolding Heavenly Kaleidoscope."], // 座右铭，可写多行
     role:      "B.S. Student · Data Science & Big Data Technology", // 身份
-    location:  "Bengbu, Anhui, China / 安徽蚌埠",  // 所在地
+    location:  "Shenzhen, Guangdong, China / 广东深圳",  // 所在地
     email:     "2069329624@qq.com",                // 邮箱
     avatar:    "assets/img/avatar.jpg",            // 头像路径
     githubUser:"JiangYunhang",                     // GitHub 用户名（用于同步仓库列表）
@@ -56,9 +60,12 @@ window.SITE = {
     { id: "repos",        label: "GitHub" },
     { id: "news",         label: "News" },
     { id: "honors",       label: "Honors" },
+    { id: "funding",      label: "Funding" },
     { id: "publications", label: "Publications" },
     { id: "patents",      label: "Patents" },
+    { id: "software",     label: "Software" },
     { id: "competitions", label: "Competitions" },
+    { id: "music",        label: "Music" },
   ],
 
   /* ==========================================================================

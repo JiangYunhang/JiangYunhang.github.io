@@ -1,128 +1,115 @@
 # 📝 如何编辑你的个人主页
 
-> **最重要的一句话：99% 的情况下，你只需要改 `js/site-data.js` 这一个文件。**
+> **最重要的一句话：99% 的情况下，你只需要改 `js/01-site-data.js` 这一个文件。**
 
 ---
 
 ## 🚀 三步更新网页
 
 1. 打开 GitHub 仓库 → [`JiangYunhang/JiangYunhang.github.io`](https://github.com/JiangYunhang/JiangYunhang.github.io)
-2. 点击 **`js/site-data.js`** → 右上角 ✏️ **铅笔图标** → 修改内容
+2. 点击 **`js/01-site-data.js`** → 右上角 ✏️ **铅笔图标** → 修改内容
 3. 页面底部点击 **Commit changes** → 等待 1–2 分钟 → 刷新 [jiangyunhang.github.io](https://jiangyunhang.github.io/) 即可看到更新
 
 ---
 
-## 📂 文件结构速览
+## 📂 仓库结构
 
 ```
 .github.io/
-├── index.html          ← 网页骨架（板块顺序在这里调整）
-├── EDITING.md          ← 你正在看的这份指南
-├── css/
-│   ├── base.css        ← 颜色 / 字号 / 字体变量（改配色看这里）
-│   ├── sidebar.css     ← 左侧边栏样式
-│   ├── content.css     ← 主内容区排版
-│   ├── components.css  ← 卡片 / 时间线 / 仓库等组件
-│   └── responsive.css  ← 响应式（手机 / 平板适配）
-├── js/
-│   ├── site-data.js    ← ★★★ 你的全部内容都在这里 ★★★
-│   ├── helpers.js      ← 渲染模板（一般不用动）
-│   ├── main.js         ← 主题切换 / 侧栏（一般不用动）
-│   ├── render.js       ← 内容渲染（一般不用动）
-│   └── interaction.js  ← 交互逻辑（一般不用动）
-└── assets/img/         ← 图片放这里
+├── index.html              ← 网页骨架（板块顺序在这里调整）
+├── EDITING.md              ← 你正在看的这份指南（快速上手）
+├── README.md               ← 仓库首页说明
+│
+├── js/                     ← JavaScript（★ 内容都在这里）
+│   ├── 01-site-data.js     ← ★★★ 你的全部内容，唯一需要日常修改的文件 ★★★
+│   ├── 02-helpers.js       ← 渲染模板（一般不用动）
+│   ├── 03-main.js          ← 主题切换 / 侧栏信息（一般不用动）
+│   ├── 04-render.js        ← 内容渲染（加新板块时才动）
+│   └── 05-interaction.js   ← 交互逻辑（一般不用动）
+│
+├── css/                    ← 样式（★ 改配色在这里）
+│   ├── 01-tokens.css       ← ★ 颜色 / 字号 / 间距变量，改配色只看这个
+│   ├── 02-base.css         ← 基础重置与全局排版
+│   ├── 03-sidebar.css      ← 左侧边栏
+│   ├── 04-content.css      ← 主内容区排版
+│   ├── 05-components.css   ← 卡片 / 时间线 / 仓库等组件
+│   └── 06-responsive.css   ← 响应式（手机 / 平板适配），必须最后加载
+│
+├── docs/                   ← 详细文档
+│   ├── DATA-FIELDS.md      ← 每个字段的详细说明与完整示例
+│   ├── HOW-TO-ADD-SECTION.md ← 如何新增一个板块
+│   └── STRUCTURE.md        ← 每个文件的作用与依赖关系
+│
+├── tools/                  ← 辅助脚本
+│   ├── check-site.py       ← 🧪 自检脚本（提交前跑一下）
+│   ├── preview.py          ← 本地预览服务器
+│   ├── deploy.sh           ← 一键部署（macOS / Linux / Git Bash）
+│   └── deploy.ps1          ← 一键部署（Windows PowerShell）
+│
+└── assets/                 ← 资源文件
+    ├── img/                ← 图片（头像、封面等）
+    └── music/              ← 音频文件
 ```
+
+> **编号的意义**：`01 → 06` 就是**加载顺序**，保证依赖关系正确。你新增文件时也建议按编号命名。
 
 ---
 
-## 🧩 各板块怎么写
+## 🧩 三大便利设计
 
-### 1️⃣ 个人信息 `profile`
+### 1️⃣ 空板块自动隐藏 ✨
+
+不用删 HTML！只要数据数组是空的，该板块和导航项自动消失：
+
+| 板块 | 数据位置 | 留空写法 |
+|---|---|---|
+| Research | `research` | `research: []` |
+| Honors | `honors` | `honors: []` |
+| Funding | `funding` | `funding: []` |
+| Publications | `publications.conferences / journals` | `{ featured: [], list: [] }` |
+| Patents | `patents.invention / design` | `{ invention: [], design: [] }` |
+| Software | `software.featured / list` | `{ featured: [], list: [] }` |
+| Competitions | `competitions.national / regional` | `{ national: [], regional: [] }` |
+| Music | `music.tracks` | `tracks: []` |
+
+### 2️⃣ 导航可自动生成
+
+`nav: []` 留空时，导航会按 `index.html` 中 `<section>` 的顺序自动生成，标题取自 `data-label`。加新板块时导航不用管。
+
+### 3️⃣ 中英对照只需写两行
+
+```js
+{
+  zh: "中文描述……",
+  en: "English description……",
+}
+```
+
+会自动上下两行显示，英文行用次级色区分。
+
+---
+
+## 📝 常用编辑示例
+
+### 改个人信息
 
 ```js
 profile: {
-  name:       "Jiang Yunhang",
-  nameCn:     "姜运航",
-  title:      "Jiang Yunhang (姜运航) - Homepage",  // 浏览器标签标题
-  motto:      ["Canvas Unfolding Heavenly Kaleidoscope."],  // 可以写多行
-  role:       "B.S. Student · Data Science & Big Data Technology",
-  location:   "Bengbu, Anhui, China / 安徽蚌埠",
-  email:      "2069329624@qq.com",
-  avatar:     "assets/img/avatar.jpg",   // 换成 assets/img/ 下的图片名
-  githubUser: "JiangYunhang",            // 改了这里，仓库列表会自动同步
-
-  socials: [
-    { label: "GitHub", href: "https://github.com/JiangYunhang", icon: "fa-brands fa-github" },
-    { label: "Email",  href: "mailto:2069329624@qq.com",      icon: "fa-solid fa-envelope" },
-  ],
+  name:      "Jiang Yunhang",
+  nameCn:    "姜运航",
+  role:      "B.S. Student · Data Science & Big Data Technology",
+  location:  "Shenzhen, Guangdong, China / 广东深圳",   // ← 所在地
+  email:     "2069329624@qq.com",
+  avatar:    "assets/img/avatar.jpg",
+  githubUser:"JiangYunhang",
 }
 ```
 
-**常用图标名**（Font Awesome 6）：
-
-| 用途 | icon |
-|---|---|
-| GitHub | `fa-brands fa-github` |
-| 邮箱 | `fa-solid fa-envelope` |
-| 学术主页 | `fa-solid fa-graduation-cap` |
-| 地点 | `fa-solid fa-location-dot` |
-| 推特/X | `fa-brands fa-x-twitter` |
-| 领英 | `fa-brands fa-linkedin` |
-| 谷歌学术 | `fa-solid fa-graduation-cap` |
-| 个人网站 | `fa-solid fa-globe` |
-| 论文 | `fa-solid fa-file-lines` |
-
-> 想加新图标？直接到 [fontawesome.com/icons](https://fontawesome.com/icons) 搜名字，
-> 找到后在网址里复制 `fa-solid fa-xxx` 这部分。
-
----
-
-### 2️⃣ 关于我 `about`
-
-```js
-about: {
-  paragraphs: [
-    {
-      zh: "🌱 中文介绍……",
-      en: "English introduction……",
-    },
-    {
-      zh: "只写中文也行：直接一句话",
-    },
-  ],
-  interests: ["LLM", "Agent", "AI4SE", "Medical AI"],
-}
-```
-
-- `zh` / `en` 会自动上下两行显示，中英对照
-- `interests` 会渲染成一排小圆角标签
-
----
-
-### 3️⃣ 教育 / 经历（时间线样式）
-
-```js
-experience: [
-  {
-    time:  "2026.06 – Present",       // 时间
-    title: "Research Assistant Student", // 主标题
-    org:   "香港中文大学（深圳）",        // 机构
-    place: "",                        // 可选，补充地点
-    tags:  ["Medical AI", "LLM"],      // 可选，小标签
-    desc:  "详细描述……",               // 可选
-    links: [{ label: "论文", href: "https://..." }],  // 可选
-  },
-],
-```
-
----
-
-### 4️⃣ 项目（卡片样式）
-
-字段和上面一样，`time` 会显示在卡片右上角：
+### 加一条项目
 
 ```js
 projects: [
+  // ...已有的项目...
   {
     time:  "2026",
     title: "项目名称",
@@ -134,172 +121,118 @@ projects: [
 ],
 ```
 
----
-
-### 5️⃣ 技能
-
-```js
-skills: [
-  { group: "Languages",   items: "Mandarin (native), English (fluent)" },
-  { group: "Programming", items: "Python, PyTorch, MATLAB" },
-  // 想加一行？照抄一行改 group 名即可
-],
-```
-
-用英文逗号分隔即可，会自动拆成一个个标签。
-
----
-
-### 6️⃣ 新闻 / 荣誉 / 资助 / 竞赛 / 专利
-
-格式完全一样：
+### 加一条新闻
 
 ```js
 news: [
-  { date: "2026.08", text: "🎉 完成了某个项目" },
+  { date: "2026.09", text: "🎉 完成了某个项目" },   // ← 新的放最前面
+  // ...
 ],
 ```
 
-> **最新的写在最前面**（数组第一项）。
-
----
-
-### 7️⃣ 论文
+### 加一篇论文
 
 ```js
 publications: {
-  note: "*: Equal Contribution, †: Corresponding Author(s)",
   conferences: {
-    // 精选论文：大卡片，带会议徽章
     featured: [
       {
         badge: "CVPR",
         title:  "论文标题",
         authors: "<strong>Jiang Yunhang</strong>, Alice, Bob",
         venue:  "In <em>CVPR 2026</em>",
-        links:  [
-          { label: "PDF", href: "https://..." },
-          { label: "Code", href: "https://..." },
-        ],
+        links:  [{ label: "PDF", href: "https://..." }],
       },
     ],
-    // 其他论文：紧凑列表
-    list: [
-      {
-        tag:  "2026",
-        text: "论文标题，作者，等。",
-        links: [{ label: "PDF", href: "https://..." }],
-      },
-    ],
+    list: [],
   },
   journals: { featured: [], list: [] },
 },
 ```
 
-**作者名加粗**：在 `authors` 里用 `<strong>Jiang Yunhang</strong>` 包裹你的名字即可。
+> 完整字段说明 → [`docs/DATA-FIELDS.md`](docs/DATA-FIELDS.md)
 
 ---
 
-### 8️⃣ 让空板块自动隐藏 ✨
+## 🎨 改配色
 
-这是最省心的设计：**不用手动删 HTML**。
-
-只要对应数组是空的 `[]`，该板块会自动隐藏，导航栏里也会自动移除对应项。
-
-| 板块 | 数据位置 | 空了就隐藏 |
-|---|---|---|
-| Research | `research: []` | ✅ |
-| Honors | `honors: []` | ✅ |
-| Funding | `funding: []` | ✅ |
-| Publications | `publications.conferences/journals` | ✅ |
-| Patents | `patents.invention / design` | ✅ |
-| Software | `software.featured / list` | ✅ |
-| Competitions | `competitions.national / regional` | ✅ |
-| Music | `music.tracks` | ✅ |
-
----
-
-### 9️⃣ 调整板块顺序
-
-编辑 `index.html`，把 `<section>` 标签整块上下移动即可。
-
-例如把 News 提到 Experience 前面：
-
-```html
-<!-- 原来 -->
-<section id="experience" ...>...</section>
-<section id="news" ...>...</section>
-
-<!-- 调整后 -->
-<section id="news" ...>...</section>
-<section id="experience" ...>...</section>
-```
-
-> ⚠️ 每个 `<section>` 里的 `id` 必须和 `js/site-data.js` 里 `nav` 数组的 `id` 对应。
-
----
-
-### 🔟 换头像
-
-1. 把新图片放到 `assets/img/` 目录下（例如 `assets/img/me.png`）
-2. 在 `js/site-data.js` 里改：
-   ```js
-   avatar: "assets/img/me.png",
-   ```
-
----
-
-## 🎨 想改配色？
-
-编辑 `css/base.css` 顶部的变量：
+编辑 `css/01-tokens.css` 顶部：
 
 ```css
-:root {
-  --accent:      #0d7a6b;   /* 主色调（绿色）*/
-  --accent-deep: #0a5f53;   /* 深色变体 */
-  --accent-soft: rgba(13,122,107,0.11);
-  --bg:          #f3f6f4;   /* 页面背景 */
-  --ink:         #16222b;   /* 正文颜色 */
-}
+--accent:      #0d7a6b;   /* 主色 */
+--accent-deep: #0a5f53;
+--accent-soft: rgba(13,122,107,0.11);
+--bg:          #f3f6f4;   /* 页面背景 */
+--ink:         #16222b;   /* 正文色 */
 ```
 
-改完记得把 `index.html` 里的 `?v=6.0` 改成 `?v=6.1`，否则浏览器会用缓存的旧样式。
+改完把 `index.html` 里的 `?v=8.0` 改成 `?v=8.1`，否则浏览器会用缓存的旧样式。
+
+---
+
+## 🔧 新增一个板块
+
+三步，详见 [`docs/HOW-TO-ADD-SECTION.md`](docs/HOW-TO-ADD-SECTION.md)：
+
+1. `index.html` 加一个 `<section id="xxx">`
+2. `js/01-site-data.js` 加 `xxx: [...]`
+3. `js/04-render.js` 加一行渲染代码
+
+---
+
+## 🧪 提交前自检（推荐）
+
+```bash
+python tools/check-site.py
+```
+
+会检查括号配平、资源引用、导航死链、字段完整性，有问题会明确告诉你。
+
+---
+
+## 🔍 本地预览
+
+```bash
+python tools/preview.py
+```
+
+浏览器自动打开 `http://localhost:8080`，改完刷新即可看到效果。
+
+---
+
+## 🚀 一键部署
+
+```bash
+# Windows PowerShell
+powershell -ExecutionPolicy Bypass -File .\tools\deploy.ps1 "更新说明"
+
+# macOS / Linux / Git Bash
+bash tools/deploy.sh "更新说明"
+```
+
+自动完成：自检 → 提交 → 推送。
 
 ---
 
 ## ⚠️ 修改时的注意事项
 
 1. **不要删掉结尾的 `};`** —— 那是对象结束的标志
-2. **每项之间的逗号** —— 英文逗号 `,`，最后一项后面的逗号可以省略
-3. **引号要配对** —— 字符串用 `"..."` 或 `'...'`，别混着漏
+2. **每项之间的逗号** —— 英文逗号 `,`，最后一项后面可省略
+3. **引号要配对** —— 字符串用 `"..."` 或 `'...'`
 4. **改坏了怎么办** —— GitHub 上点右上角 **History → 选中旧版本 → Restore this file** 就能回滚
-
----
-
-## 🔍 本地预览（可选）
-
-想在推送前先看看效果：
-
-```bash
-git clone https://github.com/JiangYunhang/JiangYunhang.github.io.git
-cd JiangYunhang.github.io
-python -m http.server 8080
-```
-
-浏览器打开 `http://localhost:8080` 即可。
 
 ---
 
 ## ❓ 常见问题
 
 **Q: 改了没生效？**
-A: ① 等待 1–2 分钟让 GitHub Pages 重新部署；② 强制刷新（Ctrl/Cmd + Shift + R）；③ 改了 CSS 的话要更新 `?v=` 版本号。
+A: ① 等 1–2 分钟让 GitHub Pages 重新部署；② 强制刷新（Ctrl/Cmd + Shift + R）；③ 改了 CSS 的话要更新 `?v=` 版本号。
 
 **Q: 出现了 `Uncaught SyntaxError`？**
-A: `site-data.js` 里有语法错误，通常是逗号或括号问题。可以用 [jsonlint](https://jsonlint.com/) 类似的工具检查，或者对照 `EDITING.md` 里的示例格式。
+A: `01-site-data.js` 里有语法错误，通常是逗号或括号问题。跑 `python tools/check-site.py` 就能定位。
 
-**Q: 想加一个全新板块（比如「博客」）？**
-A: 1. `index.html` 里加一个 `<section id="blog">`；2. `site-data.js` 里加 `blog: [...]`；3. `js/render.js` 里加渲染逻辑。一般不需要做第 3 步，如果你只是想放一组链接，可以直接放在 `about` 的 `paragraphs` 里。
+**Q: 想加一个新板块？**
+A: 见 [`docs/HOW-TO-ADD-SECTION.md`](docs/HOW-TO-ADD-SECTION.md)。
 
 ---
 

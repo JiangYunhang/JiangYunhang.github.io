@@ -1,15 +1,31 @@
+# ============================================================
+#  .gitignore — 不提交到 GitHub 的文件
+# ============================================================
+
+# ---- 操作系统 ----
 .DS_Store
 Thumbs.db
-*.mp3
-*.wav
+desktop.ini
+
+# ---- 编辑器 / IDE ----
 .idea/
 .vscode/
 .cursor/
+*.swp
+
+# ---- 依赖与构建产物 ----
 node_modules/
 _site/
 .jekyll-cache/
+.cache/
 
-# Private / bulky local materials — do not publish
+# ---- 音频（体积大；如需放歌请删掉下面两行）----
+*.mp3
+*.wav
+
+# ============================================================
+#  本地私有材料 —— 不要发布到公开仓库
+# ============================================================
 研究项目/
 港中深实习证明.docx
 Academic_CV_SJTU.docx
@@ -30,3 +46,11 @@ _final_*.css
 _upload_to_github/
 JiangYunhang.github.io-publish.zip
 *.png
+
+# ---- 本地临时文件 ----
+*.log
+*.tmp
+*.bak
+
+# ---- 根目录零散文件（避免误提交）----
+/5fe1a26347ebbc9425f076e3d6c977f5.jpg
