@@ -3,16 +3,17 @@
    ============================================================ */
 
 .content {
-  margin-left: var(--sidebar-w);
+  /* body 已用 padding-left 让出侧栏空间，这里在剩余区域水平居中 */
+  margin: 0 auto;
   padding: var(--pad-y) var(--pad-x) calc(var(--pad-y) + env(safe-area-inset-bottom));
+  width: 100%;
   max-width: calc(var(--content-max) + var(--pad-x) * 2);
-  width: calc(100% - var(--sidebar-w));
   min-width: 0;
 }
 
 /* ---- 板块 ---- */
 .section {
-  margin-bottom: clamp(34px,4.6vw,52px);
+  margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
   scroll-margin-top: 1.5rem;
   min-width: 0;
   animation: rise-in 0.55s ease both;
@@ -37,46 +38,48 @@
 
 /* ---- 板块标题 ---- */
 .section-title {
-  margin: 0 0 20px;
+  margin: 0 0 1.3rem;
   font-family: var(--font-display);
   font-size: var(--fs-title); font-weight: 400;
-  line-height: 1.25;
-  display: flex; align-items: baseline; gap: 11px;
+  line-height: var(--lh-tight);
+  display: flex; align-items: baseline; gap: 0.7rem;
   overflow-wrap: anywhere;
-  padding-bottom: 11px;
+  padding-bottom: 0.7rem;
   border-bottom: 1px solid var(--line);
   position: relative;
 }
 .section-title::after {
   content: ""; position: absolute; left: 0; bottom: -1px;
-  width: 56px; height: 2px; border-radius: 2px;
+  width: 3.5rem; height: 2px; border-radius: 2px;
   background: var(--accent);
 }
-.section-title .emoji { font-style: normal; font-size: 0.92em; filter: saturate(1.08); }
+.section-title .emoji { font-style: normal; font-size: 0.9em; filter: saturate(1.08); }
 
 .subhead {
-  margin: 26px 0 13px;
+  margin: 1.6rem 0 0.8rem;
   font-size: var(--fs-h3); color: var(--ink); font-weight: 600;
-  display: flex; align-items: center; gap: 8px;
+  line-height: var(--lh-snug);
+  display: flex; align-items: center; gap: 0.5rem;
 }
 .subhead::before {
-  content: ""; width: 4px; height: 0.92em; border-radius: 2px;
-  background: var(--accent); flex: 0 0 4px;
+  content: ""; width: 3px; height: 0.92em; border-radius: 2px;
+  background: var(--accent); flex: 0 0 3px;
 }
 
 /* ---- 正文 ---- */
-.prose p { margin: 0 0 14px; max-width: var(--measure); }
+.prose p { margin: 0 0 0.95rem; max-width: var(--measure); text-wrap: pretty; }
 .prose p:last-child { margin-bottom: 0; }
+.prose p:first-child { font-size: var(--fs-lead); line-height: 1.68; }
 .prose .lang-line { display: block; }
-.prose .lang-line + .lang-line { margin-top: 3px; }
-.prose .lang-en { color: var(--ink-soft); }
+.prose .lang-line + .lang-line { margin-top: 0.18rem; }
+.prose .lang-en { color: var(--ink-soft); font-size: 0.97em; }
 
 /* ---- 兴趣标签 ---- */
-.interest-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.interest-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1rem; }
 .interest-tag {
-  display: inline-block; padding: 5px 13px; border-radius: 999px;
+  display: inline-block; padding: 0.3rem 0.78rem; border-radius: 999px;
   background: var(--accent-soft); color: var(--accent-deep);
-  font-size: 0.79rem; font-weight: 600; letter-spacing: 0.015em;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.012em;
   border: 1px solid transparent;
   transition: transform var(--transition), background var(--transition), border-color var(--transition);
 }
@@ -88,14 +91,14 @@
 
 /* ---- 通用标签（技能 / 项目 / 经历） ---- */
 .tag-chip {
-  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  display: inline-block; padding: 0.16rem 0.55rem; border-radius: 999px;
   background: var(--panel-alt); color: var(--muted);
   border: 1px solid var(--line);
-  font-size: 0.755rem; line-height: 1.5; white-space: nowrap;
+  font-size: 0.72rem; line-height: 1.55; white-space: nowrap;
   transition: color var(--transition), border-color var(--transition), background var(--transition);
 }
 .tag-chip:hover { color: var(--accent-deep); border-color: var(--accent); background: var(--accent-soft); }
-.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 
 /* ---- 技能表 ---- */
 .skills-list {
@@ -105,29 +108,29 @@
   overflow: hidden;
 }
 .skills-list li {
-  display: grid; grid-template-columns: 116px minmax(0,1fr);
-  gap: 16px; padding: 15px 20px;
+  display: grid; grid-template-columns: 7.2rem minmax(0,1fr);
+  gap: 1rem; padding: 0.95rem 1.25rem;
   border-bottom: 1px solid var(--line);
-  font-size: 0.95rem; align-items: start;
+  font-size: 0.94rem; align-items: start;
 }
 .skills-list li:last-child { border-bottom: none; }
 .skills-list li:hover { background: var(--panel-alt); }
 .skills-list .skill-label {
-  color: var(--accent-deep); font-weight: 700; font-size: 0.86rem;
-  letter-spacing: 0.03em; padding-top: 3px;
+  color: var(--accent-deep); font-weight: 700; font-size: 0.84rem;
+  letter-spacing: 0.02em; padding-top: 0.15rem;
 }
-.skills-list .skill-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.skills-list .skill-items { display: flex; flex-wrap: wrap; gap: 0.35rem; }
 
 /* ---- 滚动面板与提示 ---- */
 .scroll-hint {
-  margin: 8px 0 0; text-align: right;
-  color: var(--faint); font-size: 0.75rem; letter-spacing: 0.04em;
+  margin: 0.5rem 0 0; text-align: right;
+  color: var(--faint); font-size: var(--fs-xs); letter-spacing: 0.03em;
 }
 .scroll-hint[hidden] { display: none !important; }
 .scroll-panel {
-  max-height: min(46vh,360px);
+  max-height: min(46vh, 22rem);
   overflow-y: auto; overflow-x: hidden;
-  padding: 4px 10px 4px 2px;
+  padding: 0.25rem 0.6rem 0.25rem 0.1rem;
   border: 1px solid transparent; border-radius: var(--radius);
   transition: border-color var(--transition);
 }
@@ -140,10 +143,10 @@
 
 /* ---- 页脚 ---- */
 .site-footer {
-  margin-top: 60px; padding-top: 22px;
+  margin-top: 3.6rem; padding-top: 1.4rem;
   border-top: 1px solid var(--line);
-  color: var(--muted); font-size: 0.875rem;
+  color: var(--muted); font-size: 0.84rem;
   overflow-wrap: anywhere;
 }
-.site-footer p { margin: 0 0 5px; }
+.site-footer p { margin: 0 0 0.3rem; }
 .site-footer p:last-child { margin-bottom: 0; }

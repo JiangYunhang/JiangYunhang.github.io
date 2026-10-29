@@ -5,13 +5,14 @@
 /* ---- 移动端汉堡按钮 ---- */
 .nav-toggle {
   display: none;
-  position: fixed; top: 14px; left: 14px; z-index: 45;
-  width: 46px; height: 46px;
+  position: fixed; top: 0.9rem; left: 0.9rem; z-index: 45;
+  width: 2.75rem; height: 2.75rem;
   border: 1px solid var(--line);
-  border-radius: 13px;
+  border-radius: 0.8rem;
   background: var(--panel-solid); color: var(--ink);
   cursor: pointer; box-shadow: var(--shadow-soft);
   align-items: center; justify-content: center;
+  font-size: 1rem;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
   -webkit-tap-highlight-color: transparent;
 }
@@ -22,10 +23,10 @@
 .sidebar {
   position: fixed; inset: 0 auto 0 0; z-index: 30;
   width: var(--sidebar-w);
-  padding: clamp(22px,2.6vh,30px) 18px;
-  padding-top: max(clamp(22px,2.6vh,30px), env(safe-area-inset-top));
-  padding-bottom: max(clamp(22px,2.6vh,30px), env(safe-area-inset-bottom));
-  padding-left: max(18px, env(safe-area-inset-left));
+  padding: 1.6rem 1.15rem;
+  padding-top: max(1.6rem, env(safe-area-inset-top));
+  padding-bottom: max(1.6rem, env(safe-area-inset-bottom));
+  padding-left: max(1.15rem, env(safe-area-inset-left));
   background: var(--panel);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -37,11 +38,11 @@
 }
 
 /* ---- 个人资料区 ---- */
-.profile { text-align: center; margin-bottom: 22px; }
+.profile { text-align: center; margin-bottom: 1.4rem; }
 
 .avatar {
-  width: clamp(94px,17vw,126px); height: clamp(94px,17vw,126px);
-  margin: 0 auto 15px; border-radius: 50%;
+  width: clamp(5.8rem, 13vw, 8rem); height: clamp(5.8rem, 13vw, 8rem);
+  margin: 0 auto 0.95rem; border-radius: 50%;
   object-fit: cover; object-position: 50% 34%;
   border: 3px solid var(--panel-solid);
   box-shadow: 0 0 0 2px var(--accent-soft), var(--shadow);
@@ -55,43 +56,43 @@
 .name {
   margin: 0; font-family: var(--font-display);
   font-size: var(--fs-name); font-weight: 400;
-  letter-spacing: 0.015em; line-height: 1.25;
+  letter-spacing: 0.01em; line-height: var(--lh-tight);
   overflow-wrap: anywhere; color: var(--ink);
 }
 .name-cn {
-  margin: 3px 0 11px; color: var(--muted);
-  font-size: 0.93rem; letter-spacing: 0.16em;
+  margin: 0.18rem 0 0.7rem; color: var(--muted);
+  font-size: 0.9rem; letter-spacing: 0.15em;
   overflow-wrap: anywhere;
 }
 .motto {
-  margin: 0 0 15px; color: var(--faint);
-  font-size: 0.85rem; line-height: 1.5;
+  margin: 0 0 0.95rem; color: var(--faint);
+  font-size: 0.8rem; line-height: 1.5;
   overflow-wrap: anywhere; hyphens: auto; font-style: italic;
 }
 
 /* ---- 身份 / 地点 / 邮箱 ---- */
 .profile-meta {
-  list-style: none; padding: 0; margin: 0 0 15px;
-  text-align: left; font-size: 0.845rem; line-height: 1.55;
+  list-style: none; padding: 0; margin: 0 0 1rem;
+  text-align: left; font-size: 0.8rem; line-height: 1.55;
 }
 .profile-meta li {
-  display: flex; gap: 9px; align-items: flex-start;
-  margin-bottom: 9px; color: var(--muted);
+  display: flex; gap: 0.55rem; align-items: flex-start;
+  margin-bottom: 0.55rem; color: var(--muted);
   overflow-wrap: anywhere;
 }
 .profile-meta li:last-child { margin-bottom: 0; }
 .profile-meta a, .profile-meta span { min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
-.profile-meta i { width: 16px; flex: 0 0 16px; margin-top: 4px; color: var(--accent); text-align: center; }
+.profile-meta i { width: 1rem; flex: 0 0 1rem; margin-top: 0.22rem; color: var(--accent); text-align: center; font-size: 0.9em; }
 .profile-meta li[hidden] { display: none !important; }
 .profile-meta li.is-placeholder { opacity: 0.45; font-style: italic; }
 
 /* ---- 社交图标 ---- */
-.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+.socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; }
 .socials a {
-  width: 37px; height: 37px; display: grid; place-items: center;
+  width: 2.25rem; height: 2.25rem; display: grid; place-items: center;
   border-radius: 50%;
   color: var(--ink-soft); background: var(--accent-soft);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: transform var(--transition), background var(--transition), color var(--transition), box-shadow var(--transition);
 }
 .socials a:hover {
@@ -103,16 +104,16 @@
 
 /* ---- 导航 ---- */
 .nav {
-  display: flex; flex-direction: column; gap: 2px;
-  margin-top: 8px; padding-top: 12px;
+  display: flex; flex-direction: column; gap: 0.1rem;
+  margin-top: 0.5rem; padding-top: 0.75rem;
   border-top: 1px solid var(--line);
 }
 .nav-link {
   position: relative;
-  padding: 8px 12px 8px 16px;
+  padding: 0.44rem 0.6rem 0.44rem 1rem;
   border-radius: var(--radius-sm);
-  color: var(--muted); font-size: 0.9rem;
-  transition: background var(--transition), color var(--transition), padding-left var(--transition);
+  color: var(--muted); font-size: 0.875rem; line-height: 1.45;
+  transition: background var(--transition), color var(--transition);
 }
 .nav-link:hover { color: var(--accent); background: var(--accent-soft); text-decoration: none; }
 .nav-link.active {
@@ -120,7 +121,7 @@
   font-weight: 600;
 }
 .nav-link.active::before {
-  content: ""; position: absolute; left: 4px; top: 50%;
+  content: ""; position: absolute; left: 0.18rem; top: 50%;
   transform: translateY(-50%);
   width: 3px; height: 62%; border-radius: 2px; background: var(--accent);
 }
@@ -128,15 +129,15 @@ html[data-theme="dark"] .nav-link.active { color: var(--accent-deep); }
 
 /* ---- 主题切换按钮 ---- */
 .theme-toggle {
-  margin-top: 16px; width: 100%;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 10px 12px; border-radius: var(--radius-sm);
+  margin-top: 1rem; width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.55rem 0.7rem; border-radius: var(--radius-sm);
   border: 1px solid var(--line); background: transparent; color: var(--muted);
-  cursor: pointer; font-size: 0.87rem; font-family: inherit;
+  cursor: pointer; font-size: 0.84rem; font-family: inherit;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 .theme-toggle:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
-.theme-toggle i { width: 15px; text-align: center; }
+.theme-toggle i { width: 1rem; text-align: center; font-size: 0.9em; }
 
 /* ---- 阅读进度条 ---- */
 .progress-bar {
@@ -149,12 +150,13 @@ html[data-theme="dark"] .nav-link.active { color: var(--accent-deep); }
 
 /* ---- 返回顶部 ---- */
 .to-top {
-  position: fixed; right: 22px; bottom: 22px; z-index: 45;
-  width: 44px; height: 44px;
+  position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 45;
+  width: 2.7rem; height: 2.7rem;
   display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 50%;
   background: var(--panel-solid); color: var(--ink-soft);
   box-shadow: var(--shadow-soft); cursor: pointer;
+  font-size: 0.95rem;
   opacity: 0; visibility: hidden; transform: translateY(10px);
   transition: opacity var(--transition), transform var(--transition), visibility var(--transition), background var(--transition), color var(--transition);
 }

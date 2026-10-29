@@ -1,27 +1,42 @@
 /* ============================================================
    responsive.css — 响应式断点
-   断点策略：1280 / 1100 / 900 / 640 / 480 / 360
+   ------------------------------------------------------------
+   排版策略：
+     · 根字号 html { font-size: clamp(15px, ..., 18px) } 随视口缩放
+     · 所有间距/字号用 rem → 整页等比缩放，比例恒定
+     · 以下断点只调整「列数」与「结构」，不做字号微调
+   断点：1440 / 1280 / 1100 / 900 / 720 / 560 / 420
    ============================================================ */
 
-/* ---- 超宽屏：内容区居中，两侧留白更均衡 ---- */
+/* ---- 超宽屏：内容区加宽上限，两侧留白更均衡 ---- */
 @media (min-width: 1440px) {
-  :root { --content-max: 1140px; --pad-x: 4rem; }
+  :root { --content-max: 68rem; --pad-x: 3.2rem; }
 }
 
-/* ---- 窄桌面：收紧侧栏 ---- */
+/* ---- 大桌面 ---- */
+@media (min-width: 1280px) {
+  :root { --pad-x: 2.8rem; }
+}
+
+/* ---- 窄桌面：收紧侧栏与间距 ---- */
 @media (min-width: 901px) and (max-width: 1100px) {
-  :root { --sidebar-w: 234px; --pad-x: 1.6rem; --pad-y: 1.9rem; }
-  .avatar { width: 106px; height: 106px; }
-  .timeline li { padding-left: 26px; }
-  .skills-list li { grid-template-columns: 100px minmax(0,1fr); }
+  :root {
+    --sidebar-w: 13.5rem;
+    --pad-x: 1.4rem;
+    --pad-y: 1.6rem;
+  }
+  .skills-list li { grid-template-columns: 6.2rem minmax(0,1fr); gap: 0.85rem; }
+  .timeline li { padding-left: 1.75rem; }
 }
 
 /* ---- 平板 / 手机：侧栏变抽屉 ---- */
 @media (max-width: 900px) {
+  body { padding-left: 0; }
+
   .nav-toggle {
     display: grid; place-items: center;
-    top: max(12px, env(safe-area-inset-top));
-    left: max(12px, env(safe-area-inset-left));
+    top: max(0.75rem, env(safe-area-inset-top));
+    left: max(0.75rem, env(safe-area-inset-left));
   }
   .nav-backdrop {
     display: none; position: fixed; inset: 0; z-index: 25;
@@ -36,7 +51,7 @@
   @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
   .sidebar {
-    width: min(86vw, 320px); max-width: calc(100vw - 52px);
+    width: min(86vw, 20rem); max-width: calc(100vw - 3.25rem);
     transform: translateX(calc(-100% - 10px));
     transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
     box-shadow: var(--shadow-lift);
@@ -45,76 +60,84 @@
   .sidebar.open { transform: translateX(0); }
 
   .content {
-    margin-left: 0; width: 100%; max-width: 100%;
+    margin: 0 auto;
+    width: 100%; max-width: 100%;
     padding:
-      calc(74px + env(safe-area-inset-top))
-      max(18px, env(safe-area-inset-right))
-      calc(44px + env(safe-area-inset-bottom))
-      max(18px, env(safe-area-inset-left));
+      calc(4.6rem + env(safe-area-inset-top))
+      max(1.15rem, env(safe-area-inset-right))
+      calc(2.75rem + env(safe-area-inset-bottom))
+      max(1.15rem, env(safe-area-inset-left));
   }
 
   /* 单列堆叠 */
   .timeline li, .feed li, .pub-list li, .pub, .soft-card {
-    grid-template-columns: 1fr; gap: 5px;
+    grid-template-columns: 1fr; gap: 0.3rem;
   }
   .pub-badge { justify-self: start; }
   .time { white-space: normal; }
-  .timeline li { padding-left: 26px; }
-  .timeline li::before { top: 8px; }
-  .timeline li::after { top: 17px; }
+  .timeline li { padding-left: 1.75rem; }
+  .timeline li::before { top: 0.55rem; }
+  .timeline li::after { top: 1.15rem; }
 
-  .skills-list li { grid-template-columns: 1fr; gap: 7px; }
+  .skills-list li { grid-template-columns: 1fr; gap: 0.45rem; }
 
-  .scroll-panel { max-height: min(60vh,440px); }
+  .scroll-panel { max-height: min(60vh, 27rem); }
   .repo-grid, .card-grid { grid-template-columns: 1fr; }
-  .nav-link { min-height: 46px; display: flex; align-items: center; padding: 10px 12px 10px 16px; }
-
-  .to-top { right: 16px; bottom: 16px; }
-}
-
-/* ---- 小屏手机 ---- */
-@media (max-width: 640px) {
-  .section-title { gap: 8px; }
-  .section-title::after { width: 42px; }
-  .prose p { max-width: 100%; }
-  .feed li { grid-template-columns: 1fr; gap: 3px; }
-  .feed .time { padding-top: 0; }
-  .project-card { padding: 17px 18px; }
-  .skills-list li { padding: 13px 16px; }
-  .pub { grid-template-columns: 1fr; gap: 8px; }
-}
-
-/* ---- 极窄屏 ---- */
-@media (max-width: 480px) {
-  :root { --fs-title: 1.4rem; --fs-name: 1.3rem; }
-  .avatar { width: 92px; height: 92px; }
-  .motto { font-size: 0.81rem; }
-  .profile-meta { font-size: 0.81rem; }
-  .interest-tag { font-size: 0.74rem; padding: 3px 9px; }
-  .tag-chip { font-size: 0.72rem; padding: 2px 8px; }
-  .content {
-    padding-left: max(15px, env(safe-area-inset-left));
-    padding-right: max(15px, env(safe-area-inset-right));
+  .nav-link {
+    min-height: 2.85rem; display: flex; align-items: center;
+    padding: 0.6rem 0.7rem 0.6rem 1rem;
   }
-  .timeline li { padding-left: 24px; }
-  .timeline li::before { left: 4px; }
-  .timeline li::after { left: 8px; }
+
+  .to-top { right: 1rem; bottom: 1rem; }
+}
+
+/* ---- 小平板 / 大手机 ---- */
+@media (max-width: 720px) {
+  :root { --pad-y: 1.5rem; }
+  .section-title { gap: 0.55rem; }
+  .section-title::after { width: 2.75rem; }
+  .prose p { max-width: 100%; }
+  .feed li { grid-template-columns: 1fr; gap: 0.15rem; }
+  .feed .time { padding-top: 0; }
+  .project-card { padding: 1.1rem 1.15rem; }
+  .skills-list li { padding: 0.85rem 1rem; }
+  .pub { grid-template-columns: 1fr; gap: 0.5rem; }
+  .pub-badge { justify-self: start; }
+}
+
+/* ---- 手机 ---- */
+@media (max-width: 560px) {
+  .avatar { width: 5.6rem; height: 5.6rem; }
+  .name-cn { font-size: 0.85rem; }
+  .motto { font-size: 0.76rem; }
+  .profile-meta { font-size: 0.78rem; }
+  .interest-tag { font-size: 0.72rem; padding: 0.24rem 0.62rem; }
+  .tag-chip { font-size: 0.7rem; padding: 0.14rem 0.48rem; }
+  .content {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  .timeline li { padding-left: 1.6rem; }
+  .timeline li::before { left: 0.25rem; }
+  .timeline li::after { left: 0.49rem; }
+  .card-grid, .repo-grid { gap: 0.8rem; }
 }
 
 /* ---- 超窄屏 ---- */
-@media (max-width: 360px) {
-  .sidebar { width: min(92vw, 292px); }
-  .section-title { gap: 6px; }
-  .section-title .emoji { font-size: 0.86em; }
-  .profile-meta { font-size: 0.78rem; }
+@media (max-width: 420px) {
+  .sidebar { width: min(92vw, 18rem); }
+  .section-title { gap: 0.42rem; }
+  .section-title .emoji { font-size: 0.84em; }
+  .profile-meta { font-size: 0.75rem; }
+  .socials a { width: 2.1rem; height: 2.1rem; }
 }
 
 /* ---- 横屏矮屏（手机横放） ---- */
 @media (max-height: 500px) and (orientation: landscape) {
-  .sidebar { padding-top: 12px; padding-bottom: 12px; }
-  .avatar { width: 72px; height: 72px; margin-bottom: 8px; }
+  .sidebar { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+  .avatar { width: 4.5rem; height: 4.5rem; margin-bottom: 0.5rem; }
   .scroll-panel { max-height: 72vh; }
-  .content { padding-top: calc(58px + env(safe-area-inset-top)); }
+  .content { padding-top: calc(3.75rem + env(safe-area-inset-top)); }
 }
 
 /* ---- 打印：打印成简历的样子 ---- */
@@ -124,16 +147,21 @@
     --ink: #000; --ink-soft: #222; --muted: #444; --faint: #666;
     --line: #ccc; --accent: #000; --accent-deep: #000; --accent-soft: #f2f2f2;
   }
-  body { background: #fff; font-size: 10.5pt; line-height: 1.5; }
+  html { font-size: 10.5pt; }
+  body { background: #fff; font-size: 10.5pt; line-height: 1.5; padding-left: 0; }
   .sidebar, .nav-toggle, .nav-backdrop, .theme-toggle, .to-top,
   .progress-bar, .scroll-hint, .badges, .skip-link { display: none !important; }
-  .content { margin-left: 0; width: 100%; max-width: 100%; padding: 0; }
-  .section { break-inside: avoid; page-break-inside: avoid; margin-bottom: 18pt; animation: none; }
-  .section-title { border-bottom: 1.5pt solid #000; font-size: 15pt; }
+  .content { margin: 0; width: 100%; max-width: 100%; padding: 0; }
+  .section {
+    break-inside: avoid; page-break-inside: avoid;
+    margin-bottom: 14pt; animation: none;
+  }
+  .section-title { border-bottom: 1.5pt solid #000; font-size: 14pt; }
   .section-title::after { display: none; }
   .timeline li, .feed li, .pub-list li, .pub { break-inside: avoid; }
+  .card-grid, .repo-grid { grid-template-columns: 1fr 1fr; gap: 6pt; }
   a { color: #000; text-decoration: underline; }
   .repo-card, .project-card, .music-card, .skills-list { box-shadow: none; border: 0.6pt solid #ccc; }
   .scroll-panel { max-height: none; overflow: visible; }
-  .site-footer { margin-top: 20pt; font-size: 8.5pt; }
+  .site-footer { margin-top: 16pt; font-size: 8.5pt; }
 }

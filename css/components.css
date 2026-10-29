@@ -3,59 +3,62 @@
    ============================================================ */
 
 /* ------------------------------------------------------------------
-   1. 时间线（教育 / 经历 / 项目）
+   1. 时间线（教育 / 经历 / 研究方向）
    ------------------------------------------------------------------ */
 .timeline, .feed, .pub-list { list-style: none; padding: 0; margin: 0; }
 
-.timeline { position: relative; padding-left: 4px; }
+.timeline { position: relative; }
 .timeline li {
   position: relative;
-  padding: 16px 0 16px 30px;
+  padding: 1rem 0 1rem 1.9rem;
   border-bottom: 1px dashed var(--line);
 }
-.timeline li:last-child { border-bottom: none; padding-bottom: 4px; }
+.timeline li:last-child { border-bottom: none; padding-bottom: 0.25rem; }
 .timeline li::before {
-  content: ""; position: absolute; left: 5px; top: 24px;
-  width: 9px; height: 9px; border-radius: 50%;
+  content: ""; position: absolute; left: 0.32rem; top: 1.5rem;
+  width: 0.55rem; height: 0.55rem; border-radius: 50%;
   background: var(--accent); border: 2px solid var(--bg);
   box-shadow: 0 0 0 3px var(--accent-soft);
   z-index: 1;
 }
 .timeline li::after {
-  content: ""; position: absolute; left: 9px; top: 33px; bottom: -16px;
+  content: ""; position: absolute; left: 0.57rem; top: 2.1rem; bottom: -1rem;
   width: 1px; background: linear-gradient(180deg, var(--accent-soft), var(--line));
 }
 .timeline li:last-child::after { display: none; }
 
 .timeline .time {
   display: inline-block; font-weight: 600; color: var(--accent-deep);
-  font-size: 0.8rem; letter-spacing: 0.03em;
-  margin-bottom: 3px;
+  font-size: 0.78rem; letter-spacing: 0.025em;
+  margin-bottom: 0.2rem;
   font-variant-numeric: tabular-nums;
 }
-.timeline .item-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.timeline .item-body { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; overflow-wrap: anywhere; }
 .timeline .item-title {
-  color: var(--ink); font-size: 1.03rem; font-weight: 600; line-height: 1.45;
+  color: var(--ink); font-size: 1.02rem; font-weight: 600; line-height: 1.42;
 }
-.timeline .item-org { color: var(--ink-soft); font-size: 0.9rem; }
-.timeline .item-org .sep { color: var(--faint); margin: 0 6px; }
-.timeline .item-desc { color: var(--muted); font-size: 0.915rem; line-height: 1.66; max-width: var(--measure); }
-.timeline .item-links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.85rem; margin-top: 2px; }
+.timeline .item-org { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.5; }
+.timeline .item-org .sep { color: var(--faint); margin: 0 0.35rem; }
+.timeline .item-desc {
+  color: var(--muted); font-size: 0.9rem; line-height: 1.65;
+  max-width: var(--measure);
+}
+.timeline .item-links { display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.83rem; margin-top: 0.1rem; }
 
 /* ------------------------------------------------------------------
-   2. 新闻 / 荣誉 / 资助 / 竞赛 —— 紧凑列表
+   2. 新闻 / 荣誉 / 资助 / 竞赛 / 专利 —— 紧凑列表
    ------------------------------------------------------------------ */
 .feed li {
-  display: grid; grid-template-columns: 84px minmax(0,1fr);
-  gap: 14px; padding: 12px 0;
+  display: grid; grid-template-columns: 5.2rem minmax(0,1fr);
+  gap: 0.9rem; padding: 0.7rem 0;
   border-bottom: 1px dashed var(--line); align-items: start;
 }
 .feed li:last-child { border-bottom: none; }
 .feed .time {
   color: var(--faint); font-variant-numeric: tabular-nums;
-  font-size: 0.82rem; white-space: nowrap; padding-top: 2px;
+  font-size: 0.8rem; white-space: nowrap; padding-top: 0.14rem;
 }
-.feed .feed-text { color: var(--ink-soft); font-size: 0.93rem; line-height: 1.62; }
+.feed .feed-text { color: var(--ink-soft); font-size: 0.91rem; line-height: 1.6; }
 .feed .feed-text strong { color: var(--ink); }
 
 /* ------------------------------------------------------------------
@@ -63,12 +66,12 @@
    ------------------------------------------------------------------ */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
 }
 .project-card {
-  display: flex; flex-direction: column; gap: 10px;
-  padding: 20px 22px;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.25rem 1.35rem;
   border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--panel-solid); box-shadow: var(--shadow-soft);
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
@@ -78,88 +81,105 @@
   border-color: var(--accent);
   box-shadow: var(--shadow);
 }
-.project-card .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-.project-card .card-time {
-  color: var(--accent-deep); font-size: 0.79rem; font-weight: 600;
-  font-variant-numeric: tabular-nums; letter-spacing: 0.03em; white-space: nowrap;
+.project-card .card-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 0.75rem; flex-wrap: wrap;
 }
-.project-card .card-title { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.45; color: var(--ink); }
-.project-card .card-org { color: var(--muted); font-size: 0.85rem; }
-.project-card .card-desc { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-.project-card .card-links { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.84rem; margin-top: auto; padding-top: 4px; }
+.project-card .card-time {
+  color: var(--accent-deep); font-size: 0.76rem; font-weight: 600;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em; white-space: nowrap;
+}
+.project-card .card-title {
+  margin: 0; font-size: 1rem; font-weight: 600;
+  line-height: 1.42; color: var(--ink); flex: 1 1 12rem; min-width: 0;
+}
+.project-card .card-org { color: var(--muted); font-size: 0.83rem; line-height: 1.5; }
+.project-card .card-desc {
+  margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.62;
+  max-width: var(--measure);
+}
+.project-card .card-links {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  font-size: 0.82rem; margin-top: auto; padding-top: 0.25rem;
+}
 
 /* ------------------------------------------------------------------
    4. 论文
    ------------------------------------------------------------------ */
-.pub { display: grid; grid-template-columns: 104px minmax(0,1fr); gap: 16px; padding: 16px 0; border-bottom: 1px dashed var(--line); }
+.pub {
+  display: grid; grid-template-columns: 6.5rem minmax(0,1fr);
+  gap: 1rem; padding: 1rem 0;
+  border-bottom: 1px dashed var(--line);
+}
 .pub:last-child { border-bottom: none; }
 .pub-badge {
-  align-self: start; padding: 6px 9px; border-radius: 8px;
+  align-self: start; padding: 0.35rem 0.5rem; border-radius: 0.5rem;
   background: var(--accent-soft); color: var(--accent-deep);
-  font-size: 0.73rem; font-weight: 700; text-align: center;
-  line-height: 1.35; letter-spacing: 0.02em;
+  font-size: 0.7rem; font-weight: 700; text-align: center;
+  line-height: 1.35; letter-spacing: 0.015em;
   white-space: nowrap;
 }
-.pub-title { margin: 0 0 6px; font-size: 1.02rem; font-weight: 600; line-height: 1.45; color: var(--ink); }
-.pub-authors, .pub-venue { margin: 0 0 4px; font-size: 0.9rem; color: var(--muted); }
+.pub-title { margin: 0 0 0.35rem; font-size: 1rem; font-weight: 600; line-height: 1.42; color: var(--ink); }
+.pub-authors, .pub-venue { margin: 0 0 0.22rem; font-size: 0.88rem; color: var(--muted); line-height: 1.55; }
 .pub-authors strong { color: var(--ink-soft); }
 .pub-venue em { font-style: italic; }
-.pub-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 7px; font-size: 0.84rem; }
+.pub-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.4rem; font-size: 0.82rem; }
 
 .pub-list li {
-  display: grid; grid-template-columns: 72px minmax(0,1fr);
-  gap: 14px; padding: 11px 0;
+  display: grid; grid-template-columns: 4.5rem minmax(0,1fr);
+  gap: 0.9rem; padding: 0.65rem 0;
   border-bottom: 1px dashed var(--line); align-items: start;
 }
 .pub-list li:last-child { border-bottom: none; }
-.pub-list .tag { color: var(--accent-deep); font-weight: 600; font-size: 0.83rem; font-variant-numeric: tabular-nums; }
-.pub-list .pub-list-text { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.6; }
+.pub-list .tag { color: var(--accent-deep); font-weight: 600; font-size: 0.81rem; font-variant-numeric: tabular-nums; }
+.pub-list .pub-list-text { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.58; }
 
 /* ------------------------------------------------------------------
    5. 软件 / 音乐
    ------------------------------------------------------------------ */
 .soft-card {
-  display: grid; grid-template-columns: 92px minmax(0,1fr); gap: 16px;
-  padding: 15px 0; border-bottom: 1px dashed var(--line); align-items: start;
+  display: grid; grid-template-columns: 5.8rem minmax(0,1fr); gap: 1rem;
+  padding: 0.9rem 0; border-bottom: 1px dashed var(--line); align-items: start;
 }
 .soft-card:last-child { border-bottom: none; }
-.soft-card h4 { margin: 0 0 4px; font-size: 1rem; color: var(--ink); }
-.soft-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.soft-card h4 { margin: 0 0 0.25rem; font-size: 0.98rem; color: var(--ink); line-height: 1.4; }
+.soft-card p { margin: 0; color: var(--muted); font-size: 0.88rem; }
 
-.music-grid { display: grid; gap: 14px; }
+.music-grid { display: grid; gap: 0.85rem; }
 .music-card {
-  display: grid; grid-template-columns: 68px minmax(0,1fr); gap: 16px;
-  padding: 16px 18px;
+  display: grid; grid-template-columns: 4.25rem minmax(0,1fr); gap: 1rem;
+  padding: 1rem 1.15rem;
   border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--panel-solid); box-shadow: var(--shadow-soft);
   transition: border-color var(--transition), transform var(--transition);
 }
 .music-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.music-card img { width: 68px; height: 68px; border-radius: 10px; object-fit: cover; }
-.music-card h4 { margin: 0 0 4px; font-size: 0.98rem; }
-.music-card p { margin: 0; color: var(--muted); font-size: 0.87rem; }
-.music-card audio { width: 100%; margin-top: 10px; height: 34px; }
+.music-card img { width: 4.25rem; height: 4.25rem; border-radius: 0.6rem; object-fit: cover; }
+.music-card h4 { margin: 0 0 0.25rem; font-size: 0.96rem; }
+.music-card p { margin: 0; color: var(--muted); font-size: 0.85rem; }
+.music-card audio { width: 100%; margin-top: 0.6rem; height: 34px; }
 
 .quote {
-  margin: 0 0 20px; padding: 16px 20px;
+  margin: 0 0 1.25rem; padding: 1rem 1.25rem;
   border-left: 3px solid var(--accent);
   background: var(--panel-solid); color: var(--ink-soft);
   border-radius: 0 var(--radius) var(--radius) 0;
   box-shadow: var(--shadow-soft);
+  font-size: 0.95rem;
 }
-.quote footer { margin-top: 9px; font-size: 0.85rem; color: var(--faint); }
+.quote footer { margin-top: 0.55rem; font-size: 0.83rem; color: var(--faint); }
 
 /* ------------------------------------------------------------------
    6. GitHub 仓库卡片
    ------------------------------------------------------------------ */
 .repo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 262px), 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
+  gap: 0.95rem;
 }
 .repo-card {
-  display: flex; flex-direction: column; gap: 9px;
-  padding: 17px 19px;
+  display: flex; flex-direction: column; gap: 0.55rem;
+  padding: 1.05rem 1.15rem;
   border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--panel-solid); box-shadow: var(--shadow-soft);
   color: inherit; text-decoration: none;
@@ -170,37 +190,37 @@
   box-shadow: var(--shadow); text-decoration: none;
 }
 .repo-card h4 {
-  margin: 0; font-size: 0.99rem; font-weight: 600;
+  margin: 0; font-size: 0.96rem; font-weight: 600;
   color: var(--accent-deep);
-  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
   overflow-wrap: anywhere;
 }
-.repo-card p { margin: 0; color: var(--muted); font-size: 0.885rem; line-height: 1.6; flex: 1; }
-.repo-meta { display: flex; flex-wrap: wrap; gap: 13px; align-items: center; font-size: 0.79rem; color: var(--faint); }
+.repo-card p { margin: 0; color: var(--muted); font-size: 0.86rem; line-height: 1.58; flex: 1; }
+.repo-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; font-size: 0.77rem; color: var(--faint); }
 .repo-lang { display: inline-flex; align-items: center; }
 .repo-lang::before {
-  content: ""; display: inline-block; width: 8px; height: 8px;
-  margin-right: 6px; border-radius: 50%; background: var(--accent);
+  content: ""; display: inline-block; width: 0.5rem; height: 0.5rem;
+  margin-right: 0.38rem; border-radius: 50%; background: var(--accent);
 }
-.repo-stat { display: inline-flex; align-items: center; gap: 4px; }
+.repo-stat { display: inline-flex; align-items: center; gap: 0.25rem; }
 .repo-tag {
-  font-size: 0.68rem; font-weight: 600; padding: 2px 7px;
+  font-size: 0.66rem; font-weight: 600; padding: 0.1rem 0.45rem;
   border-radius: 999px; background: var(--accent-soft); color: var(--accent-deep);
 }
 .repo-empty {
-  padding: 22px; border: 1px dashed var(--line-strong);
+  padding: 1.4rem; border: 1px dashed var(--line-strong);
   border-radius: var(--radius); background: var(--panel-alt);
-  color: var(--muted);
+  color: var(--muted); font-size: 0.88rem;
 }
-.repo-empty p { margin: 0 0 6px; }
+.repo-empty p { margin: 0 0 0.4rem; }
 .repo-empty p:last-child { margin-bottom: 0; }
-.repo-more { margin: 14px 0 0; font-size: 0.9rem; }
+.repo-more { margin: 0.9rem 0 0; font-size: 0.88rem; }
 
 /* ------------------------------------------------------------------
    7. 空状态提示
    ------------------------------------------------------------------ */
 .empty-state {
-  padding: 20px 22px;
+  padding: 1.25rem 1.4rem;
   border: 1px dashed var(--line-strong); border-radius: var(--radius);
-  background: var(--panel-alt); color: var(--muted); font-size: 0.9rem;
+  background: var(--panel-alt); color: var(--muted); font-size: 0.88rem;
 }
