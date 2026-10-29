@@ -8,6 +8,7 @@ window.SITE = {
     title: "Jiang Yunhang (姜运航) - Homepage",
     motto: ["Canvas Unfolding Heavenly Kaleidoscope."],
     role: "B.S. Student · Data Science & Big Data Technology",
+    location: "Bengbu, Anhui, China / 安徽蚌埠",
     email: "2069329624@qq.com",
     avatar: "assets/img/avatar.jpg",
     githubUser: "JiangYunhang",
