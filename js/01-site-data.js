@@ -80,7 +80,7 @@ window.SITE = {
         en: "Hi, I'm <strong>Jiang Yunhang</strong>, an undergraduate major in <strong>Data Science and Big Data Technology</strong>.",
       },
       {
-        zh: "🔭 研究兴趣位于<strong>深度学习</strong>与<strong>自然语言处理</strong>的交叉领域，关注<strong>大语言模型（LLM）</strong>、<strong>智能体（Agent）</strong>以及<strong>面向软件工程的 AI（AI4SE）</strong>，并延伸至医学影像与临床大模型方向。",
+        zh: "🔭 科研方向位于<strong>深度学习</strong>与<strong>自然语言处理</strong>的交叉领域，关注<strong>大语言模型（LLM）</strong>、<strong>智能体（Agent）</strong>以及<strong>面向软件工程的 AI（AI4SE）</strong>，并延伸至医学影像与临床大模型方向。",
         en: "🔭 My research lies at the intersection of <strong>Deep Learning</strong> and <strong>Natural Language Processing</strong>, with emphasis on <strong>Large Language Models</strong>, <strong>Intelligent Agents</strong> and <strong>AI for Software Engineering</strong>, extending to medical imaging and clinical LLMs.",
       },
       {
